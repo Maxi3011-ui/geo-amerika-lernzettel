@@ -83,9 +83,6 @@
   details[open] summary::before { content: "－ "; }
   details .a { padding: 0 0 8px; }
 
-  .knoepfe { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 0; }
-  .knoepfe button { min-height: 40px; border: 0; border-radius: 10px; background: var(--line); color: var(--ink); font: inherit; font-weight: 700; font-size: 0.9rem; cursor: pointer; }
-  .knoepfe button:first-child { background: var(--acc); color: #0d0f12; }
   details .a p { margin: 6px 0; }
   .card > p.res { margin: 8px 0 2px; }
   .leg { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-weight: 600; }
@@ -116,9 +113,7 @@
     summary { padding: 6px 0; }
     .leg { gap: 6px; padding: 3px 0; font-size: 0.85rem; }
     .leg .nr { width: 20px; height: 20px; font-size: 0.72rem; }
-    .knoepfe { gap: 4px; }
-    .knoepfe button { min-height: 32px; font-size: 0.78rem; border-radius: 8px; }
-    .legend { font-size: 0.72rem; }
+        .legend { font-size: 0.72rem; }
   }
 </style>
 </head>
@@ -283,10 +278,7 @@
       <div class="row"><div class="k">Ungewöhnlich kühl</div><div>Station liegt hoch (z. B. Denver, 1600 m)</div></div>
     </div>
 
-    <h2>4 · Üben</h2>
-    <div class="card" id="ueben"></div>
-
-    <h2>Alle Orte mit Musterlösung</h2>
+    <h2>4 · Orte mit Musterlösung</h2>
     <div class="card" id="orte"></div>
 
     <h2>Ursachen</h2>
@@ -344,8 +336,6 @@
       <div class="row"><div class="k">Rio Grande</div><div>Grenze zu Mexiko</div></div>
     </div>
 
-    <h2>Abfrage</h2>
-    <div class="card" id="quiz"></div>
   </section>
 
   <!-- ================= USA ================= -->
@@ -600,19 +590,6 @@ function beschreibung(o) {
     <h3>Warum ${o.region}?</h3><p>${o.warum}</p>`;
 }
 
-// Üben
-let aktuell = Math.floor(Math.random() * ORTE.length);
-function zeigeUebung(loesung) {
-  const o = ORTE[aktuell];
-  document.getElementById('ueben').innerHTML = `<p class="m">Welcher Ort ist das? Beschreibe das Diagramm erst selbst, dann Lösung zeigen.</p>
-    ${diagramm(o, loesung)}
-    ${loesung ? `<p class="res">${o.name} · ${o.region}</p>${beschreibung(o)}` : ''}
-    <div class="knoepfe"><button type="button" id="lsg">${loesung ? 'Ausblenden' : 'Lösung zeigen'}</button><button type="button" id="next">Nächstes</button></div>`;
-  document.getElementById('lsg').onclick = () => zeigeUebung(!loesung);
-  document.getElementById('next').onclick = () => { aktuell = (aktuell + 1 + Math.floor(Math.random() * (ORTE.length - 1))) % ORTE.length; zeigeUebung(false); };
-}
-zeigeUebung(false);
-
 // Alle Orte
 document.getElementById('orte').innerHTML = ORTE.map(o =>
   `<details><summary>${o.name} · ${o.region}</summary><div class="a">${diagramm(o, true)}${beschreibung(o)}</div></details>`).join('');
@@ -694,23 +671,6 @@ document.getElementById('orte').innerHTML = ORTE.map(o =>
   document.getElementById('legende').innerHTML = leg;
 })();
 
-/* ===== Naturräume-Abfrage ===== */
-const QUIZ = [
-  ['Gebirge direkt am Pazifik', 'Küstengebirge (Coast Ranges)'],
-  ['Flaches, fruchtbares Tal in Kalifornien, sommertrocken', 'Kalifornisches Längstal (Central Valley)'],
-  ['Hohe Kette östlich des Längstals', 'Sierra Nevada'],
-  ['Trockenes Hochland zwischen den Gebirgsketten', 'Becken und Plateaus (Great Basin, Colorado-Plateau)'],
-  ['Hauptkette der Kordilleren, Ostrand', 'Rocky Mountains'],
-  ['Trockene Ebenen direkt östlich der Rockies', 'Great Plains'],
-  ['Flaches Land am Mississippi, offen nach Nord und Süd', 'Zentrales Tiefland'],
-  ['Altes Gestein um die Hudson Bay', 'Kanadischer Schild'],
-  ['Altes Mittelgebirge im Osten', 'Appalachen'],
-  ['Flaches Land am Golf von Mexiko', 'Küstenebene am Golf'],
-  ['Fünf Seen an der Grenze USA–Kanada', 'Große Seen'],
-  ['Hauptstrom der Mitte, mündet in den Golf', 'Mississippi']
-];
-document.getElementById('quiz').innerHTML = QUIZ.map(([q, a]) =>
-  `<details><summary>${q}</summary><div class="a"><b>${a}</b></div></details>`).join('');
 </script>
 </body>
 </html>
