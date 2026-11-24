@@ -92,10 +92,10 @@
     .row { grid-template-columns: 1fr; gap: 0; padding: 5px 0; }
     .m { font-size: 0.72rem; }
     .formel { font-size: 0.95rem; padding: 5px 0; }
-    .step .t { font-size: 0.68rem; }
+    .step .t { font-size: 0.72rem; }
     .res { font-size: 1rem; }
     summary { padding: 6px 0; }
-    .legend { font-size: 0.66rem; }
+    .legend { font-size: 0.72rem; }
   }
 </style>
 </head>
@@ -370,7 +370,7 @@ const MON = ['J','F','M','A','M','J','J','A','S','O','N','D'];
 const T = [8.3, 10.3, 12.6, 15.0, 18.9, 22.0, 24.0, 23.6, 22.0, 17.8, 12.0, 8.0];
 const N = [92, 89, 70, 30, 16, 5, 0, 1, 6, 27, 55, 81];
 (function zeichne() {
-  const W = 300, H = 190, L = 30, R = 30, O = 10, U = 22;
+  const W = 240, H = 180, L = 26, R = 30, O = 14, U = 22;
   const pw = W - L - R, ph = H - O - U;
   const maxN = 100; // 100 mm = 50 °C
   const y = mm => O + ph - mm / maxN * ph;
@@ -380,13 +380,13 @@ const N = [92, 89, 70, 30, 16, 5, 0, 1, 6, 27, 55, 81];
   T.forEach((t, i) => { if (N[i] < 2 * t) s += `<rect x="${L + bw * i}" y="${O}" width="${bw}" height="${ph}" fill="#e8a33d" opacity="0.16"/>`; });
   for (let mm = 0; mm <= 100; mm += 20) {
     s += `<line x1="${L}" x2="${W - R}" y1="${y(mm)}" y2="${y(mm)}" stroke="#2a2f37"/>`;
-    s += `<text x="${L - 4}" y="${y(mm) + 4}" fill="#ff6b5e" font-size="10" text-anchor="end">${mm / 2}</text>`;
-    s += `<text x="${W - R + 4}" y="${y(mm) + 4}" fill="#6fb3ff" font-size="10">${mm}</text>`;
+    s += `<text x="${L - 4}" y="${y(mm) + 4}" fill="#ff6b5e" font-size="13" text-anchor="end">${mm / 2}</text>`;
+    s += `<text x="${W - R + 4}" y="${y(mm) + 4}" fill="#6fb3ff" font-size="13">${mm}</text>`;
   }
   N.forEach((n, i) => { s += `<rect x="${L + bw * i + bw * 0.2}" y="${y(n)}" width="${bw * 0.6}" height="${y(0) - y(n)}" fill="#6fb3ff" opacity="0.85"/>`; });
   s += `<polyline fill="none" stroke="#ff6b5e" stroke-width="2.5" points="${T.map((t, i) => x(i) + ',' + y(t * 2)).join(' ')}"/>`;
-  MON.forEach((m, i) => { s += `<text x="${x(i)}" y="${H - 6}" fill="#8d939c" font-size="10" text-anchor="middle">${m}</text>`; });
-  s += `<text x="${L - 4}" y="${O - 1}" fill="#ff6b5e" font-size="9" text-anchor="end">°C</text><text x="${W - R + 4}" y="${O - 1}" fill="#6fb3ff" font-size="9">mm</text>`;
+  MON.forEach((m, i) => { s += `<text x="${x(i)}" y="${H - 6}" fill="#8d939c" font-size="13" text-anchor="middle">${m}</text>`; });
+  s += `<text x="${L - 4}" y="${O - 1}" fill="#ff6b5e" font-size="12" text-anchor="end">°C</text><text x="${W - R + 4}" y="${O - 1}" fill="#6fb3ff" font-size="12">mm</text>`;
   s += '</svg>';
   document.getElementById('kd').innerHTML = s;
   const mittel = T.reduce((a, b) => a + b) / 12, summe = N.reduce((a, b) => a + b);
