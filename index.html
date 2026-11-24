@@ -122,28 +122,51 @@
   <section id="luv">
     <h2>Wie Luv und Lee funktionieren</h2>
     <div class="card">
-      <svg viewBox="0 0 240 150" role="img" aria-label="Skizze Luv und Lee">
-        <polygon points="70,135 125,30 135,30 200,135" fill="#3a3326" stroke="#8d939c" stroke-width="1.5"/>
-        <line x1="10" y1="80" x2="230" y2="80" stroke="#8d939c" stroke-dasharray="4 3"/>
-        <text x="236" y="94" fill="#8d939c" font-size="13" text-anchor="end">Wolkengrenze</text>
-        <ellipse cx="108" cy="60" rx="26" ry="14" fill="#c9ced6"/>
-        <ellipse cx="92" cy="68" rx="18" ry="10" fill="#c9ced6"/>
-        <g stroke="#6fb3ff" stroke-width="2"><line x1="84" y1="84" x2="80" y2="94"/><line x1="94" y1="84" x2="90" y2="94"/><line x1="104" y1="80" x2="100" y2="90"/></g>
-        <path d="M8,135 L55,135 Q75,135 85,100 L118,40" fill="none" stroke="#ff6b5e" stroke-width="2.5" marker-end="url(#pf)"/>
-        <path d="M142,40 L195,128" fill="none" stroke="#e8a33d" stroke-width="2.5" marker-end="url(#pf2)"/>
+      <svg viewBox="0 0 240 175" role="img" aria-label="Skizze: feuchte Luft steigt im Luv auf, regnet ab und sinkt im Lee warm und trocken ab">
         <defs>
-          <marker id="pf" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="#ff6b5e"/></marker>
-          <marker id="pf2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="#e8a33d"/></marker>
+          <linearGradient id="luvhang" x1="0" x2="1"><stop offset="0" stop-color="#2f5a3c"/><stop offset="0.5" stop-color="#3b4a33"/><stop offset="1" stop-color="#6b5233"/></linearGradient>
+          <marker id="pr" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="#ff6b5e"/></marker>
+          <marker id="po" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="#e8a33d"/></marker>
         </defs>
-        <text x="30" y="20" fill="#6ad19a" font-size="16" font-weight="700" text-anchor="middle">Luv</text>
-        <text x="210" y="20" fill="#e8a33d" font-size="16" font-weight="700" text-anchor="middle">Lee</text>
-        <text x="8" y="128" fill="#f2f2ee" font-size="14">10 °C</text>
-        <text x="30" y="98" fill="#f2f2ee" font-size="14">−6 °C</text>
-        <text x="130" y="22" fill="#f2f2ee" font-size="14" text-anchor="middle">−13 °C</text>
-        <text x="232" y="128" fill="#f2f2ee" font-size="14" text-anchor="end">17 °C</text>
-        <text x="8" y="149" fill="#6fb3ff" font-size="13">Wind →</text>
+        <!-- Meer und Boden -->
+        <rect x="0" y="150" width="62" height="25" fill="#1d3b5c"/>
+        <path d="M2,156 q6,-4 12,0 t12,0 t12,0 t12,0 t12,0" fill="none" stroke="#6fb3ff" stroke-width="1.5"/>
+        <rect x="62" y="150" width="178" height="25" fill="#2a241c"/>
+        <!-- Berg -->
+        <polygon points="62,150 122,32 130,32 210,150" fill="url(#luvhang)" stroke="#8d939c" stroke-width="1.2"/>
+        <!-- Bäume im Luv -->
+        <g fill="#6ad19a"><path d="M74,146 l5,-12 l5,12z"/><path d="M84,136 l5,-12 l5,12z"/><path d="M93,126 l4,-10 l4,10z"/></g>
+        <!-- trockenes Lee -->
+        <g stroke="#a88b5a" stroke-width="1.5"><line x1="190" y1="149" x2="192" y2="143"/><line x1="196" y1="149" x2="195" y2="144"/><line x1="214" y1="150" x2="216" y2="144"/><line x1="222" y1="150" x2="221" y2="145"/></g>
+        <!-- Kondensationsniveau -->
+        <line x1="4" y1="92" x2="236" y2="92" stroke="#8d939c" stroke-dasharray="4 3"/>
+        <!-- Wolke und Regen -->
+        <g fill="#c9ced6" opacity="0.92"><ellipse cx="104" cy="74" rx="20" ry="12"/><ellipse cx="118" cy="62" rx="15" ry="10"/><ellipse cx="90" cy="84" rx="16" ry="9"/></g>
+        <g stroke="#6fb3ff" stroke-width="2" stroke-linecap="round"><line x1="80" y1="98" x2="77" y2="106"/><line x1="88" y1="96" x2="85" y2="104"/><line x1="96" y1="92" x2="93" y2="100"/><line x1="84" y1="108" x2="81" y2="116"/></g>
+        <!-- Luftweg -->
+        <path d="M4,142 L50,142 Q60,142 64,132 L114,38" fill="none" stroke="#ff6b5e" stroke-width="2.5" marker-end="url(#pr)"/>
+        <path d="M138,38 L204,136 Q208,142 216,142 L234,142" fill="none" stroke="#e8a33d" stroke-width="2.5" marker-end="url(#po)"/>
+        <!-- Beschriftung -->
+        <text x="6" y="18" fill="#6ad19a" font-size="17" font-weight="700">Luv</text>
+        <text x="234" y="18" fill="#e8a33d" font-size="17" font-weight="700" text-anchor="end">Lee</text>
+        <!-- Nummern -->
+        <g font-size="14" font-weight="800" text-anchor="middle" fill="#0d0f12">
+          <circle cx="24" cy="128" r="10" fill="#6fb3ff"/><text x="24" y="133">1</text>
+          <circle cx="46" cy="112" r="10" fill="#ff6b5e"/><text x="46" y="117">2</text>
+          <circle cx="22" cy="92" r="10" fill="#c9ced6"/><text x="22" y="97">3</text>
+          <circle cx="76" cy="58" r="10" fill="#6fb3ff"/><text x="76" y="63">4</text>
+          <circle cx="126" cy="18" r="10" fill="#c9ced6"/><text x="126" y="23">5</text>
+          <circle cx="192" cy="80" r="10" fill="#e8a33d"/><text x="192" y="85">6</text>
+          <circle cx="226" cy="124" r="10" fill="#e8a33d"/><text x="226" y="129">7</text>
+        </g>
       </svg>
-      <p class="m">Der Wind kommt von links (Luv) und steigt auf. Ab der Wolkengrenze (Kondensationsniveau) regnet es. Rechts (Lee) sinkt die Luft wieder ab.</p>
+      <div class="step"><div class="t">1 · Meer</div><div class="c">Wind nimmt Wasserdampf auf</div></div>
+      <div class="step"><div class="t">2 · Aufstieg im Luv</div><div class="c">Luft muss am Gebirge hoch und kühlt ab (1 °C pro 100 m)</div></div>
+      <div class="step"><div class="t">3 · Kondensationsniveau</div><div class="c">Luft ist gesättigt, Wolken bilden sich</div></div>
+      <div class="step"><div class="t">4 · Wolke</div><div class="c">Steigungsregen; Luft kühlt langsamer ab (0,5 °C pro 100 m)</div></div>
+      <div class="step"><div class="t">5 · Gipfel</div><div class="c">Luft ist kalt und hat ihr Wasser verloren</div></div>
+      <div class="step"><div class="t">6 · Abstieg im Lee</div><div class="c">Luft sinkt, erwärmt sich, Wolken lösen sich auf (1 °C pro 100 m)</div></div>
+      <div class="step"><div class="t">7 · Fuß im Lee</div><div class="c">warm und trocken: Föhn, Regenschatten</div></div>
     </div>
 
     <h2>Der Weg der Luft</h2>
