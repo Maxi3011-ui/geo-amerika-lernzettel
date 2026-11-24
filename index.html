@@ -310,8 +310,8 @@
   <section id="raeume" hidden>
     <h2>Karte</h2>
     <div class="card">
-      <div id="karte"></div>
-      <p class="m">Karte: Captain Blood, <a href="https://commons.wikimedia.org/wiki/File:USA_topo_en.jpg" style="color:inherit">Wikimedia Commons</a>, CC BY-SA 3.0. Beschriftung ergänzt.</p>
+      <a href="karte-usa-gross.jpg" target="_blank"><img src="karte-usa.jpg" alt="Physische Karte der USA mit Gebirgen, Ebenen und Flüssen" style="display:block;width:100%;height:auto;border-radius:8px"></a>
+      <p class="m">Karte: Captain Blood, <a href="https://commons.wikimedia.org/wiki/File:USA_topo_en.jpg" style="color:inherit">Wikimedia Commons</a>, CC BY-SA 3.0. Antippen zum Vergrößern.</p>
     </div>
 
     <h2>Westen</h2>
@@ -592,36 +592,6 @@ function beschreibung(o) {
 // Alle Orte
 document.getElementById('orte').innerHTML = ORTE.map(o =>
   `<details><summary>${o.name} · ${o.region}</summary><div class="a">${diagramm(o, true)}${beschreibung(o)}</div></details>`).join('');
-
-/* ===== Karte Naturräume ===== */
-(function karte() {
-  const T = (x, y, t, size, col, extra = '') => `<text x="${x}" y="${y}" fill="${col}" font-size="${size}" font-weight="800" text-anchor="middle" stroke="#0d0f12" stroke-width="${size / 5}" paint-order="stroke" ${extra}>${t}</text>`;
-  const pfeil = (d, col, id) => `<path d="${d}" fill="none" stroke="#0d0f12" stroke-width="16" stroke-linecap="round"/><path d="${d}" fill="none" stroke="${col}" stroke-width="9" stroke-linecap="round" marker-end="url(#${id})"/>`;
-  let s = `<svg viewBox="0 0 1000 682" role="img" aria-label="Physische Karte der USA mit Westen, Zentralen Tiefländern und Osten">
-    <defs>
-      <marker id="kw" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto"><path d="M0,0 L4,2 L0,4z" fill="#ff5a4a"/></marker>
-      <marker id="kk" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto"><path d="M0,0 L4,2 L0,4z" fill="#7fe3ff"/></marker>
-      <marker id="kg" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto"><path d="M0,0 L4,2 L0,4z" fill="#ffffff"/></marker>
-    </defs>
-    <image href="karte-usa.jpg" x="0" y="0" width="1000" height="682"/>`;
-  s += pfeil('M8,215 L78,215', '#ffffff', 'kg') + pfeil('M8,300 L78,300', '#ffffff', 'kg');
-  s += T(8, 190, 'Westwinde', 30, '#ffffff', 'text-anchor="start"').replace('text-anchor="middle" ', '');
-  s += pfeil('M795,605 Q830,520 870,430 T975,230', '#ff5a4a', 'kw');
-  s += T(905, 515, 'Golfstrom', 34, '#ff5a4a');
-  s += T(905, 550, '(warm)', 30, '#ff5a4a');
-  s += pfeil('M985,40 Q975,120 935,190', '#7fe3ff', 'kk');
-  s += T(880, 70, 'Labradorstrom', 32, '#7fe3ff');
-  s += T(880, 104, '(kalt)', 30, '#7fe3ff');
-  s += T(250, 300, 'Westen', 62, '#ffffff');
-  s += T(250, 350, '(Kordilleren)', 38, '#ffffff');
-  s += T(545, 330, 'Zentrale', 58, '#ffffff');
-  s += T(545, 390, 'Tiefländer', 58, '#ffffff');
-  s += T(805, 440, 'Osten', 58, '#ffffff');
-  s += T(640, 125, 'Große Seen', 34, '#ffffff');
-  s += T(675, 520, 'Mississippi', 32, '#ffffff');
-  s += '</svg>';
-  document.getElementById('karte').innerHTML = s;
-})();
 
 </script>
 </body>
