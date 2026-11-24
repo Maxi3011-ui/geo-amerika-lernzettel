@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="disabled-adaptations" content="watch">
+<meta name="theme-color" content="#0d0f12">
+<title>Geo – Amerika</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236ad19a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Arial' font-size='34' font-weight='bold' fill='%230d0f12'%3EGeo%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0d0f12;
+    --panel: #181b20;
+    --line: #2a2f37;
+    --ink: #f2f2ee;
+    --muted: #8d939c;
+    --acc: #6ad19a;
+    --red: #ff6b5e;
+    --blue: #6fb3ff;
+    --gold: #e8a33d;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; background: var(--bg); }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px; line-height: 1.35;
+  }
+  .shell { max-width: 520px; margin: 0 auto; padding: 0 16px 40px; }
+
+  nav.tabs {
+    position: sticky; top: 0; z-index: 5;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+    padding: 10px 0; background: var(--bg);
+  }
+  nav.tabs button {
+    min-height: 44px; border: 0; border-radius: 12px;
+    background: var(--panel); color: var(--muted);
+    font: inherit; font-size: 0.85rem; font-weight: 700; cursor: pointer; padding: 0 2px;
+  }
+  nav.tabs button[aria-selected="true"] { background: var(--acc); color: #0d0f12; }
+
+  section[hidden] { display: none; }
+  h2 { margin: 18px 0 8px; font-size: 1.25rem; line-height: 1.15; }
+  h2:first-child { margin-top: 6px; }
+  h3 { margin: 10px 0 4px; font-size: 1rem; color: var(--acc); }
+
+  .card { background: var(--panel); border-radius: 14px; padding: 6px 12px; margin-bottom: 10px; }
+  .card > p { margin: 6px 0; }
+  ul { margin: 4px 0; padding-left: 1.1em; }
+  li { margin: 3px 0; }
+  b { color: var(--acc); }
+  .r { color: var(--red); font-weight: 700; }
+  .bl { color: var(--blue); font-weight: 700; }
+  .g { color: var(--gold); font-weight: 700; }
+  .m { color: var(--muted); font-size: 0.85rem; }
+
+  .row { display: grid; grid-template-columns: 38% 1fr; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .row:last-child { border-bottom: 0; }
+  .row .k { font-weight: 700; }
+
+  .formel { font-weight: 800; font-size: 1.05rem; text-align: center; padding: 8px 0; }
+
+  .inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 6px 0; }
+  .inputs label { display: flex; flex-direction: column; gap: 3px; font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+  .inputs input {
+    width: 100%; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--bg); color: var(--ink); font: inherit; font-weight: 700;
+  }
+  .inputs input:focus { outline: 2px solid var(--acc); border-color: transparent; }
+  .step { padding: 7px 0; border-bottom: 1px solid var(--line); }
+  .step:last-child { border-bottom: 0; }
+  .step .t { color: var(--muted); font-size: 0.8rem; font-weight: 700; }
+  .step .c { font-weight: 700; }
+  .res { font-size: 1.15rem; font-weight: 800; color: var(--acc); }
+
+  details { border-bottom: 1px solid var(--line); }
+  details:last-child { border-bottom: 0; }
+  summary { padding: 8px 0; font-weight: 700; cursor: pointer; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "＋ "; color: var(--acc); }
+  details[open] summary::before { content: "－ "; }
+  details .a { padding: 0 0 8px; }
+
+  svg { display: block; width: 100%; height: auto; }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 0.8rem; color: var(--muted); padding: 4px 0 6px; }
+
+  /* Apple Watch */
+  @media (max-width: 230px) {
+    body { font-size: 15px; }
+    .shell { padding: 0 3px 24px; }
+    nav.tabs { grid-template-columns: repeat(2, 1fr); gap: 3px; padding: 4px 0 6px; }
+    nav.tabs button { min-height: 30px; border-radius: 9px; font-size: 0.72rem; }
+    h2 { margin: 12px 0 5px; font-size: 1.05rem; }
+    h3 { font-size: 0.9rem; margin: 8px 0 3px; }
+    .card { padding: 3px 7px; border-radius: 10px; margin-bottom: 7px; }
+    ul { padding-left: 0.9em; }
+    .row { grid-template-columns: 1fr; gap: 0; padding: 5px 0; }
+    .m { font-size: 0.72rem; }
+    .formel { font-size: 0.95rem; padding: 5px 0; }
+    .inputs { grid-template-columns: 1fr; gap: 4px; }
+    .inputs label { font-size: 0.68rem; }
+    .inputs input { padding: 4px 6px; font-size: 0.9rem; border-radius: 7px; }
+    .step .t { font-size: 0.68rem; }
+    .res { font-size: 1rem; }
+    summary { padding: 6px 0; }
+    .legend { font-size: 0.66rem; }
+  }
+</style>
+</head>
+<body>
+<main class="shell">
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="luv" aria-selected="true">Luv/Lee</button>
+    <button role="tab" data-tab="diagramm" aria-selected="false">Diagramm</button>
+    <button role="tab" data-tab="raeume" aria-selected="false">Räume</button>
+    <button role="tab" data-tab="usa" aria-selected="false">USA</button>
+  </nav>
+
+  <!-- ================= LUV / LEE ================= -->
+  <section id="luv">
+    <h2>Rechner Luv → Lee</h2>
+    <div class="card">
+      <div class="inputs" id="calc">
+        <label>Start-Temp. [°C]<input inputmode="decimal" autocomplete="off" data-k="t0" value="10"></label>
+        <label>Start-Höhe [m]<input inputmode="decimal" autocomplete="off" data-k="h0" value="0"></label>
+        <label>Kondensationsniveau [m]<input inputmode="decimal" autocomplete="off" data-k="kn" value="1600"></label>
+        <label>Gipfel [m]<input inputmode="decimal" autocomplete="off" data-k="g" value="3000"></label>
+        <label>Ziel im Lee [m]<input inputmode="decimal" autocomplete="off" data-k="he" value="0"></label>
+      </div>
+    </div>
+    <div class="card" id="out"></div>
+
+    <h2>Regeln</h2>
+    <div class="card">
+      <div class="row"><div class="k">Trocken<br><span class="m">ohne Wolke</span></div><div><b>1 °C pro 100 m</b><br>Aufstieg bis Kondensationsniveau und jeder Abstieg</div></div>
+      <div class="row"><div class="k">Feucht<br><span class="m">in der Wolke</span></div><div><b>0,5 °C pro 100 m</b><br>vom Kondensationsniveau bis zum Gipfel</div></div>
+      <div class="row"><div class="k">Warum nur 0,5?</div><div>Kondensation setzt Wärme frei → Abkühlung reduziert</div></div>
+      <div class="row"><div class="k">Lee</div><div>Abstieg immer trocken: <b>+1 °C pro 100 m</b> → Lee wärmer und trockener als Luv (Föhn)</div></div>
+    </div>
+    <div class="card">
+      <div class="formel">Δh in m ÷ 100 × Rate = ΔT</div>
+      <p class="m">Bsp.: 1400 m feucht → 14 × 0,5 = 7 °C kälter</p>
+    </div>
+
+    <h2>Steigungsregen</h2>
+    <div class="card">
+      <ul>
+        <li>Luft nimmt über dem Ozean Feuchtigkeit auf</li>
+        <li>Wind treibt Luft ans Gebirge → <b>Aufstieg erzwungen</b></li>
+        <li>Luft kühlt ab; kalte Luft speichert weniger Wasserdampf als warme</li>
+        <li>Ab dem <b>Kondensationsniveau</b>: Wolken → Regen im <b>Luv</b></li>
+        <li>Im <b>Lee</b> sinkt die Luft, erwärmt sich, Wolken lösen sich auf → <b>Trockenheit</b> (Regenschatten)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="row"><div class="k">Luv</div><div>dem Wind zugewandt: feucht, viel Regen</div></div>
+      <div class="row"><div class="k">Lee</div><div>dem Wind abgewandt: trocken, warm</div></div>
+    </div>
+
+    <h2>Beispiele USA</h2>
+    <div class="card">
+      <ul>
+        <li>Westwind vom Pazifik → Westküste im Luv: bis <b>3000 mm</b>/Jahr</li>
+        <li>Kalifornisches Längstal im Lee der Küstengebirge → Sommertrockenheit</li>
+        <li>Great Basin und Great Plains im Lee der Kordilleren: <b>250–500 mm</b>/Jahr</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= KLIMADIAGRAMM ================= -->
+  <section id="diagramm" hidden>
+    <h2>Klimadiagramm lesen</h2>
+    <div class="card">
+      <div class="row"><div class="k"><span class="r">Temperatur</span></div><div>rote Linie, linke Achse (°C)</div></div>
+      <div class="row"><div class="k"><span class="bl">Niederschlag</span></div><div>blaue Linie/Balken, rechte Achse (mm)</div></div>
+      <div class="row"><div class="k">Maßstab</div><div><b>10 °C = 20 mm</b></div></div>
+      <div class="row"><div class="k">Humid</div><div>N-Linie <b>über</b> T-Linie<br>Niederschlag &gt; Verdunstung</div></div>
+      <div class="row"><div class="k">Arid</div><div>N-Linie <b>unter</b> T-Linie<br>Niederschlag &lt; Verdunstung</div></div>
+      <div class="row"><div class="k">Schnelltest</div><div>arid, wenn N (mm) &lt; 2 × T (°C)</div></div>
+    </div>
+
+    <h2>Beispiel: Sacramento</h2>
+    <div class="card">
+      <p class="m">Kalifornisches Längstal, 38° N, 8 m ü. NN</p>
+      <div id="kd"></div>
+      <div class="legend"><span class="r">— Temperatur</span><span class="bl">▮ Niederschlag</span><span class="g">▒ arid</span></div>
+      <div id="kdwerte"></div>
+    </div>
+
+    <h2>Auswertung in 5 Schritten</h2>
+    <div class="card">
+      <div class="step"><div class="t">1 · Einordnen</div><div class="c">Station, Lage (Breite, Kontinent, Küste/Inland), Höhe ü. NN</div></div>
+      <div class="step"><div class="t">2 · Temperatur</div><div class="c">Jahresmittel, wärmster und kältester Monat, <b>Amplitude ΔT = Tmax − Tmin</b>, Verlauf</div></div>
+      <div class="step"><div class="t">3 · Niederschlag</div><div class="c">Jahressumme, Verteilung, Maximum/Minimum (Sommer- oder Winterregen)</div></div>
+      <div class="step"><div class="t">4 · Humid / arid</div><div class="c">welche Monate humid, welche arid</div></div>
+      <div class="step"><div class="t">5 · Erklären</div><div class="c">Ursachen nennen (unten), Klimatyp benennen</div></div>
+    </div>
+
+    <h2>Ursachen fürs Klima</h2>
+    <div class="card">
+      <div class="row"><div class="k">Geogr. Breite</div><div>Nord/Süd: je näher am Äquator, desto wärmer</div></div>
+      <div class="row"><div class="k">Kontinentalität / Maritimität</div><div>Entfernung zum Meer → ΔT</div></div>
+      <div class="row"><div class="k">Meeres&shy;strömungen</div><div>warm: warme, feuchte Luft → viel Niederschlag, milde Winter<br>kalt: kühl, trocken</div></div>
+      <div class="row"><div class="k">Gebirge</div><div>Luv: feucht · Lee: trocken</div></div>
+      <div class="row"><div class="k">Tallage / Höhe</div><div>Tal im Lee trocken · Höhe kälter</div></div>
+    </div>
+
+    <h2>Ozeanisch vs. kontinental</h2>
+    <div class="card">
+      <div class="row"><div class="k">Ozeanisch (maritim)</div><div><b>niedrige ΔT</b>, milde Winter, kühle Sommer, Niederschlag ganzjährig</div></div>
+      <div class="row"><div class="k">Kontinental</div><div><b>hohe ΔT</b>, kalte Winter, heiße Sommer, weniger Niederschlag</div></div>
+      <div class="row"><div class="k">Grund</div><div>Wasser erwärmt sich langsam und speichert Wärme lange; Land erwärmt und kühlt schnell</div></div>
+      <div class="row"><div class="k">Halbkugel</div><div>Nord: wärmster Monat Juli · Süd: Januar</div></div>
+    </div>
+  </section>
+
+  <!-- ================= NATURRÄUME ================= -->
+  <section id="raeume" hidden>
+    <h2>Naturräume von West nach Ost</h2>
+    <div class="card">
+      <h3>Kordilleren (Westen, Nord-Süd)</h3>
+      <div class="row"><div class="k">Küstengebirge</div><div>Coast Ranges, direkt am Pazifik</div></div>
+      <div class="row"><div class="k">Kalifornisches Längstal</div><div>Central Valley, flaches Tal zwischen Küstengebirge und Sierra Nevada</div></div>
+      <div class="row"><div class="k">Sierra Nevada / Kaskaden&shy;gebirge</div><div>hohe Gebirgskette östlich des Längstals (Kaskaden im Norden, Vulkane)</div></div>
+      <div class="row"><div class="k">Intermontane Becken und Plateaus</div><div>Great Basin, Colorado-Plateau (Grand Canyon), Columbia-Plateau; trocken</div></div>
+      <div class="row"><div class="k">Rocky Mountains</div><div>Hauptkette der Kordilleren, Ostrand des Gebirges</div></div>
+    </div>
+    <div class="card">
+      <h3>Mitte</h3>
+      <div class="row"><div class="k">Great Plains</div><div>Große Ebenen östlich der Rockies, steigen nach Westen an, trocken (Lee)</div></div>
+      <div class="row"><div class="k">Zentrales Tiefland</div><div>Mississippi-Tiefland, Prärie, flach, offen nach Nord und Süd</div></div>
+      <div class="row"><div class="k">Kanadischer Schild</div><div>um die Hudson Bay, altes Gestein, viele Seen</div></div>
+    </div>
+    <div class="card">
+      <h3>Osten</h3>
+      <div class="row"><div class="k">Appalachen</div><div>altes Mittelgebirge, Nord-Süd, parallel zur Ostküste</div></div>
+      <div class="row"><div class="k">Atlantische Küstenebene</div><div>schmale Ebene zwischen Appalachen und Atlantik</div></div>
+      <div class="row"><div class="k">Golfküstenebene</div><div>flach am Golf von Mexiko</div></div>
+    </div>
+
+    <h2>Gewässer</h2>
+    <div class="card">
+      <div class="row"><div class="k">Große Seen</div><div>Oberer See, Michigan-, Huron-, Erie-, Ontariosee</div></div>
+      <div class="row"><div class="k">Mississippi</div><div>Hauptstrom des Zentralen Tieflands → Golf von Mexiko; Nebenflüsse Missouri, Ohio</div></div>
+      <div class="row"><div class="k">St.-Lorenz-Strom</div><div>Große Seen → Atlantik</div></div>
+      <div class="row"><div class="k">Colorado</div><div>durch den Grand Canyon → Golf von Kalifornien</div></div>
+      <div class="row"><div class="k">Rio Grande</div><div>Grenze USA–Mexiko → Golf von Mexiko</div></div>
+      <div class="row"><div class="k">Meere</div><div>Pazifik, Atlantik, Golf von Mexiko, Hudson Bay</div></div>
+    </div>
+
+    <h2>Abfrage</h2>
+    <div class="card" id="quiz"></div>
+  </section>
+
+  <!-- ================= USA ================= -->
+  <section id="usa" hidden>
+    <h2>Klima Nordamerikas</h2>
+    <div class="card">
+      <p>Großteil der USA in der <b>gemäßigten Zone</b>, trotzdem vielfältige Klimate durch unterschiedliche Einflüsse.</p>
+      <h3>Westen</h3>
+      <ul>
+        <li>Westwindzone</li>
+        <li>Kordilleren halten Niederschlag ab → Westküste bis <b>3000 mm</b>, innere Ebenen nur <b>250–500 mm</b></li>
+        <li>Südwesten: <b>subtropisches Winterregenklima</b>; im Sommer nordpazifisches Subtropenhoch → trocken</li>
+      </ul>
+      <h3>Zentrale Tiefländer</h3>
+      <ul>
+        <li>Norden: kühlgemäßigtes kontinentales Klima, hohe ΔT</li>
+        <li>Süden: feucht-tropische Luftmassen vom Golf</li>
+        <li><b>Kein Ost-West-Gebirge</b> → Luftmassen strömen ungehindert von Nord nach Süd und umgekehrt</li>
+        <li>Folge: Kaltlufteinbrüche (Northers, Cold Waves), Tornados, Blizzards, Hurrikans</li>
+      </ul>
+      <h3>Osten</h3>
+      <ul>
+        <li>Südliche Ostküste: <b>warmer Golfstrom</b> → feucht, viel Niederschlag, milde Winter</li>
+        <li>Norden: <b>kalter Labradorstrom</b> → kühl</li>
+        <li>Südosten: tropische Luftmassen aus der Karibik</li>
+        <li>Jahresniederschlag ca. <b>1000 mm</b></li>
+        <li>New York: kalte Winter, weil kalte Luft ungehindert von Norden kommt</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="row"><div class="k">Humid</div><div>Niederschlag &gt; Verdunstung</div></div>
+      <div class="row"><div class="k">Arid</div><div>Niederschlag &lt; Verdunstung</div></div>
+      <div class="row"><div class="k">Kalte Luft</div><div>trocken: kann weniger Wasserdampf speichern</div></div>
+    </div>
+
+    <h2>Wirtschaft</h2>
+    <div class="card">
+      <div class="row"><div class="k">BIP</div><div>Bruttoinlandsprodukt: Wert aller Waren und Dienstleistungen, die ein Land in einem Jahr produziert</div></div>
+      <div class="row"><div class="k">Primärer Sektor</div><div>Landwirtschaft, Bergbau</div></div>
+      <div class="row"><div class="k">Sekundärer Sektor</div><div>Industrie, produzierendes Gewerbe</div></div>
+      <div class="row"><div class="k">Tertiärer Sektor</div><div>Dienstleistungen</div></div>
+      <div class="row"><div class="k">Deutschland</div><div>I 1 % · II 22,9 % · III 71,2 % → Industrieland</div></div>
+      <div class="row"><div class="k">Nigeria</div><div>I 20 % · II 29 % · III 47 %</div></div>
+    </div>
+
+    <h2>Landwirtschaft</h2>
+    <div class="card">
+      <div class="row"><div class="k">Voraus&shy;setzungen</div><div>Temperatur, Niederschlag, fruchtbarer Boden</div></div>
+      <div class="row"><div class="k">Intensiv</div><div>hohe Erträge pro Fläche: Massentierhaltung, Dünger, Pestizide, viel Maschineneinsatz</div></div>
+      <div class="row"><div class="k">Extensiv</div><div>große Flächen, wenig Einsatz pro Fläche, niedrige Erträge pro Fläche (z. B. Weidewirtschaft)</div></div>
+      <div class="row"><div class="k">Feedlots</div><div>Rindermast auf engem Raum, Tausende Tiere, Kraftfutter (Mais, Soja), Antibiotika; Gülle belastet Boden und Grundwasser</div></div>
+    </div>
+
+    <h2>Kalifornisches Längstal</h2>
+    <div class="card">
+      <h3>Gunstfaktoren</h3>
+      <ul>
+        <li>fruchtbarer Boden</li>
+        <li>hohe Temperaturen, kein Frost</li>
+        <li>flaches Relief</li>
+        <li>zahlreiche Flüsse</li>
+        <li>mehrere Ernten pro Jahr</li>
+      </ul>
+      <h3>Ungunstfaktor</h3>
+      <ul><li><b>Sommertrockenheit</b> (Lee, Subtropenhoch)</li></ul>
+      <h3>→ Künstliche Bewässerung aus</h3>
+      <ul>
+        <li>Flüssen</li>
+        <li>Grundwasser</li>
+        <li>Niederschlagsspeicherung (Stauseen, Schneeschmelze Sierra Nevada)</li>
+        <li>Kanalsystemen</li>
+      </ul>
+      <h3>Folgen</h3>
+      <div class="row"><div class="k">Salzwasser&shy;intrusion</div><div>zu viel Grundwasser aus unsachgemäßen Brunnen → Meerwasser dringt in den Untergrund → Grundwasser versalzt</div></div>
+      <div class="row"><div class="k">Land&shy;absenkung</div><div>Untergrund aus Sand- und Tonschichten; Tiefbrunnen senken den Wasserdruck → Tonschichten fallen zusammen → Boden sinkt ab; Ton nimmt danach kaum Wasser auf → Speicher dauerhaft verloren</div></div>
+      <div class="row"><div class="k">Boden&shy;versalzung</div><div>Bewässerungswasser verdunstet, Salze bleiben im Boden</div></div>
+    </div>
+
+    <h2>Bewässerungsformen</h2>
+    <div class="card">
+      <h3>Tröpfchen</h3>
+      <div class="row"><div class="k">Pro</div><div>Wasser sparen, gezielt an die Wurzel, weniger Pilzkrankheiten (Blätter trocken), effiziente Düngung</div></div>
+      <div class="row"><div class="k">Contra</div><div>hohe Anfangsinvestition, Wartung und Kontrolle, Planungsaufwand</div></div>
+      <div class="row"><div class="k">Funktion</div><div>Schläuche mit Löchern an jeder Pflanze, oft computergesteuert</div></div>
+      <h3>Furchen</h3>
+      <div class="row"><div class="k">Pro</div><div>niedrige Kosten, einfache Handhabung, weniger Pilzbefall (Blätter trocken)</div></div>
+      <div class="row"><div class="k">Contra</div><div>geringe Wassereffizienz, Flächenverlust (mind. 30 %), Bodenversalzung</div></div>
+      <div class="row"><div class="k">Funktion</div><div>Wasser fließt in Gräben zwischen den Reihen</div></div>
+      <h3>Sprinkler</h3>
+      <div class="row"><div class="k">Pro</div><div>große Fläche abgedeckt, einfache Installation</div></div>
+      <div class="row"><div class="k">Contra</div><div>hoher Wasserverlust (Verdunstung), windanfällig</div></div>
+      <div class="row"><div class="k">Funktion</div><div>Wasser wird wie Regen versprüht</div></div>
+    </div>
+
+    <h2>Naturgefahren (verstehen)</h2>
+    <div class="card">
+      <details><summary>Tornado</summary><div class="a">Entsteht über Land: warme, feuchte Golfluft trifft auf kalte, trockene Luft → Verwirbelung, Auf- und Abwinde. „Tornado Alley“ in den Great Plains (kein Ost-West-Gebirge, starke ΔT). Kleiner, lokaler, aber stärker als Hurrikan. Stärke: Fujita-Skala F0–F5.</div></details>
+      <details><summary>Hurrikan</summary><div class="a">Entsteht über dem Meer: Wasser mind. 26 °C, warme Luft steigt auf → Tiefdruck, nachströmende Winde, Erdrotation → Drehbewegung. Ab 118 km/h. Saison Juni–November. Folgen: Sturm, Überschwemmung. Schutz: Evakuierung, Häuser verbarrikadieren, Überwachung.</div></details>
+      <details><summary>Blizzard</summary><div class="a">Arktische Luft trifft auf feuchte, warme Luft → heftiger Schneesturm. Möglich, weil kein Ost-West-Gebirge die Kaltluft stoppt. Folgen: Frostschäden, kein Verkehr, Stromausfall.</div></details>
+      <details><summary>Erdbeben</summary><div class="a">Platten reiben aneinander, Spannungen entladen sich ruckartig. Kalifornien: San-Andreas-Verwerfung (Transformstörung zwischen Pazifischer und Nordamerikanischer Platte). Schutz: erdbebensicher bauen, unter Tisch/Türrahmen.</div></details>
+      <details><summary>Tsunami</summary><div class="a">Große Wassermassen werden plötzlich verdrängt: Seebeben, Vulkanausbruch, Hangrutsch. Schutz: Deiche, Sensoren am Meeresboden, Evakuierung.</div></details>
+      <details><summary>Vulkane</summary><div class="a">Heißes Gestein (Magma) dringt an die Oberfläche: an divergierenden/konvergierenden Plattengrenzen oder über Mantelplumes (Hotspot, z. B. Hawaii, Yellowstone). Folgen: Lavaströme, Ascheregen, pyroklastische Ströme; Asche macht Boden fruchtbar.</div></details>
+    </div>
+  </section>
+</main>
+
+<script>
+/* ===== Tabs ===== */
+const tabs = document.querySelectorAll('nav.tabs button');
+tabs.forEach(b => b.addEventListener('click', () => {
+  tabs.forEach(x => x.setAttribute('aria-selected', x === b ? 'true' : 'false'));
+  document.querySelectorAll('main > section').forEach(s => s.hidden = s.id !== b.dataset.tab);
+  window.scrollTo(0, 0);
+}));
+
+/* ===== Luv/Lee-Rechner ===== */
+const fmt = n => (Math.round(n * 10) / 10).toString().replace('.', ',').replace('-', '−');
+const parse = s => parseFloat(String(s).replace(',', '.').replace('−', '-'));
+function rechne() {
+  const v = {};
+  let ok = true;
+  document.querySelectorAll('#calc input').forEach(i => { v[i.dataset.k] = parse(i.value); if (isNaN(v[i.dataset.k])) ok = false; });
+  const out = document.getElementById('out');
+  if (!ok) { out.innerHTML = '<div class="step m">Bitte alle Werte eintragen.</div>'; return; }
+  const { t0, h0, kn, g, he } = v;
+  let html = '';
+  if (kn >= g) {
+    const tg = t0 - (g - h0) / 100;
+    const te = tg + (g - he) / 100;
+    html += `<div class="step"><div class="t">Aufstieg trocken (keine Wolke, Gipfel unter Kondensationsniveau)</div><div class="c">${fmt((g - h0) / 100)} × 1 °C → Gipfel <b>${fmt(tg)} °C</b></div></div>`;
+    html += `<div class="step"><div class="t">Abstieg Lee trocken</div><div class="c">${fmt((g - he) / 100)} × 1 °C → <span class="res">${fmt(te)} °C</span> auf ${fmt(he)} m</div></div>`;
+  } else {
+    const tk = t0 - (kn - h0) / 100;
+    const tg = tk - (g - kn) / 100 * 0.5;
+    const te = tg + (g - he) / 100;
+    html += `<div class="step"><div class="t">1 · Luv trocken: ${fmt(h0)} → ${fmt(kn)} m</div><div class="c">${fmt((kn - h0) / 100)} × 1 °C = −${fmt((kn - h0) / 100)} °C → <b>${fmt(tk)} °C</b></div></div>`;
+    html += `<div class="step"><div class="t">2 · Luv feucht (Wolke, Regen): ${fmt(kn)} → ${fmt(g)} m</div><div class="c">${fmt((g - kn) / 100)} × 0,5 °C = −${fmt((g - kn) / 200)} °C → <b>${fmt(tg)} °C</b></div></div>`;
+    html += `<div class="step"><div class="t">3 · Lee trocken: ${fmt(g)} → ${fmt(he)} m</div><div class="c">${fmt((g - he) / 100)} × 1 °C = +${fmt((g - he) / 100)} °C → <span class="res">${fmt(te)} °C</span></div></div>`;
+    if (he === h0) html += `<div class="step"><div class="t">Föhneffekt</div><div class="c">Lee ist <b>${fmt(te - t0)} °C</b> wärmer als Luv</div></div>`;
+  }
+  out.innerHTML = html;
+}
+document.getElementById('calc').addEventListener('input', rechne);
+rechne();
+
+/* ===== Klimadiagramm Sacramento ===== */
+const MON = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+const T = [8.3, 10.3, 12.6, 15.0, 18.9, 22.0, 24.0, 23.6, 22.0, 17.8, 12.0, 8.0];
+const N = [92, 89, 70, 30, 16, 5, 0, 1, 6, 27, 55, 81];
+(function zeichne() {
+  const W = 300, H = 190, L = 30, R = 30, O = 10, U = 22;
+  const pw = W - L - R, ph = H - O - U;
+  const maxN = 100; // 100 mm = 50 °C
+  const y = mm => O + ph - mm / maxN * ph;
+  const x = i => L + pw / 12 * (i + 0.5);
+  const bw = pw / 12;
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Klimadiagramm Sacramento">`;
+  T.forEach((t, i) => { if (N[i] < 2 * t) s += `<rect x="${L + bw * i}" y="${O}" width="${bw}" height="${ph}" fill="#e8a33d" opacity="0.16"/>`; });
+  for (let mm = 0; mm <= 100; mm += 20) {
+    s += `<line x1="${L}" x2="${W - R}" y1="${y(mm)}" y2="${y(mm)}" stroke="#2a2f37"/>`;
+    s += `<text x="${L - 4}" y="${y(mm) + 4}" fill="#ff6b5e" font-size="10" text-anchor="end">${mm / 2}</text>`;
+    s += `<text x="${W - R + 4}" y="${y(mm) + 4}" fill="#6fb3ff" font-size="10">${mm}</text>`;
+  }
+  N.forEach((n, i) => { s += `<rect x="${L + bw * i + bw * 0.2}" y="${y(n)}" width="${bw * 0.6}" height="${y(0) - y(n)}" fill="#6fb3ff" opacity="0.85"/>`; });
+  s += `<polyline fill="none" stroke="#ff6b5e" stroke-width="2.5" points="${T.map((t, i) => x(i) + ',' + y(t * 2)).join(' ')}"/>`;
+  MON.forEach((m, i) => { s += `<text x="${x(i)}" y="${H - 6}" fill="#8d939c" font-size="10" text-anchor="middle">${m}</text>`; });
+  s += `<text x="${L - 4}" y="${O - 1}" fill="#ff6b5e" font-size="9" text-anchor="end">°C</text><text x="${W - R + 4}" y="${O - 1}" fill="#6fb3ff" font-size="9">mm</text>`;
+  s += '</svg>';
+  document.getElementById('kd').innerHTML = s;
+  const mittel = T.reduce((a, b) => a + b) / 12, summe = N.reduce((a, b) => a + b);
+  const tmax = Math.max(...T), tmin = Math.min(...T);
+  const arid = T.map((t, i) => N[i] < 2 * t ? i : -1).filter(i => i >= 0);
+  const namen = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+  document.getElementById('kdwerte').innerHTML = `
+    <div class="row"><div class="k">Jahresmittel</div><div>${fmt(mittel)} °C</div></div>
+    <div class="row"><div class="k">Amplitude</div><div>${fmt(tmax)} − ${fmt(tmin)} = <b>${fmt(tmax - tmin)} K</b></div></div>
+    <div class="row"><div class="k">Niederschlag</div><div>${summe} mm/Jahr, Maximum im Winter → Winterregen</div></div>
+    <div class="row"><div class="k">Arid</div><div>${namen[arid[0]]}–${namen[arid[arid.length - 1]]} (${arid.length} Monate)</div></div>
+    <div class="row"><div class="k">Erklärung</div><div>Lee der Küstengebirge + Subtropenhoch im Sommer → subtropisches Winterregenklima</div></div>`;
+})();
+
+/* ===== Naturräume-Abfrage ===== */
+const QUIZ = [
+  ['Gebirge direkt am Pazifik', 'Küstengebirge (Coast Ranges)'],
+  ['Flaches, fruchtbares Tal in Kalifornien, sommertrocken', 'Kalifornisches Längstal (Central Valley)'],
+  ['Hohe Kette östlich des Längstals', 'Sierra Nevada'],
+  ['Trockenes Hochland zwischen den Gebirgsketten', 'Intermontane Becken und Plateaus (Great Basin, Colorado-Plateau)'],
+  ['Hauptkette der Kordilleren, Ostrand', 'Rocky Mountains'],
+  ['Trockene Ebenen direkt östlich der Rockies', 'Great Plains'],
+  ['Flaches Land am Mississippi, offen nach Nord und Süd', 'Zentrales Tiefland'],
+  ['Altes Gestein um die Hudson Bay', 'Kanadischer Schild'],
+  ['Altes Mittelgebirge im Osten', 'Appalachen'],
+  ['Flaches Land am Golf von Mexiko', 'Golfküstenebene'],
+  ['Fünf Seen an der Grenze USA–Kanada', 'Große Seen'],
+  ['Hauptstrom der Mitte, mündet in den Golf', 'Mississippi']
+];
+document.getElementById('quiz').innerHTML = QUIZ.map(([q, a]) =>
+  `<details><summary>${q}</summary><div class="a"><b>${a}</b></div></details>`).join('');
+</script>
+</body>
+</html>
