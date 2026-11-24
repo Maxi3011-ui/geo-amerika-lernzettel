@@ -311,38 +311,26 @@
     <h2>Karte</h2>
     <div class="card">
       <div id="karte"></div>
-      <p class="m">Vereinfacht. Zahlen = Naturräume, Buchstaben = Gewässer.</p>
-      <div id="legende"></div>
+      <p class="m">Vereinfacht, Einteilung wie im Heft. Weiße Pfeile = Westwinde.</p>
     </div>
 
-    <h2>Westen: Kordilleren</h2>
+    <h2>Westen</h2>
     <div class="card">
-      <div class="row"><div class="k">Küstengebirge</div><div>direkt am Pazifik</div></div>
-      <div class="row"><div class="k">Kalifornisches Längstal</div><div>flaches Tal dahinter</div></div>
-      <div class="row"><div class="k">Sierra Nevada</div><div>Gebirge östlich vom Tal (im Norden: Kaskaden&shy;gebirge)</div></div>
-      <div class="row"><div class="k">Becken und Plateaus</div><div>trockenes Hochland: Great Basin, Colorado-Plateau</div></div>
-      <div class="row"><div class="k">Rocky Mountains</div><div>Hauptgebirge, Ostrand</div></div>
+      <p><b>Kordilleren</b>: hohe Gebirge, die von Nord nach Süd verlaufen (Küstengebirge, Kalifornisches Längstal, Sierra Nevada, Becken und Plateaus wie das Great Basin, Rocky Mountains).</p>
     </div>
-    <h2>Mitte</h2>
+    <h2>Zentrale Tiefländer</h2>
     <div class="card">
-      <div class="row"><div class="k">Great Plains</div><div>trockene Ebenen östlich der Rockies</div></div>
-      <div class="row"><div class="k">Zentrales Tiefland</div><div>flach, am Mississippi</div></div>
-      <div class="row"><div class="k">Kanadischer Schild</div><div>um die Hudson Bay, viele Seen</div></div>
+      <p>Flaches, weites Land zwischen den Rocky Mountains und den Appalachen, von Kanada bis zum Golf von Mexiko, ohne Gebirge von Ost nach West (Great Plains im Westen, Mississippi-Tiefland, Golfküste).</p>
     </div>
     <h2>Osten</h2>
     <div class="card">
-      <div class="row"><div class="k">Appalachen</div><div>altes Mittelgebirge</div></div>
-      <div class="row"><div class="k">Küstenebenen</div><div>am Atlantik und am Golf von Mexiko</div></div>
+      <p>Altes, niedriges Mittelgebirge und Küstenland am Atlantik (Appalachen, Atlantische Küstenebene, Florida).</p>
     </div>
     <h2>Gewässer</h2>
     <div class="card">
-      <div class="row"><div class="k">Große Seen</div><div>Oberer, Michigan, Huron, Erie, Ontario</div></div>
-      <div class="row"><div class="k">Mississippi</div><div>mit Missouri und Ohio → Golf von Mexiko</div></div>
-      <div class="row"><div class="k">St.-Lorenz-Strom</div><div>Große Seen → Atlantik</div></div>
-      <div class="row"><div class="k">Colorado</div><div>Grand Canyon</div></div>
-      <div class="row"><div class="k">Rio Grande</div><div>Grenze zu Mexiko</div></div>
+      <div class="row"><div class="k">Mississippi</div><div>großer Fluss mitten durch die Zentralen Tiefländer → Golf von Mexiko</div></div>
+      <div class="row"><div class="k">Große Seen</div><div>fünf Seen an der Grenze zu Kanada</div></div>
     </div>
-
   </section>
 
   <!-- ================= USA ================= -->
@@ -611,11 +599,14 @@ document.getElementById('orte').innerHTML = ORTE.map(o =>
   const pts = a => a.map(([lo, la]) => P(lo, la).join(',')).join(' ');
   const poly = (a, fill, extra = '') => `<polygon points="${pts(a)}" fill="${fill}" ${extra}/>`;
   const line = (a, stroke, w, extra = '') => `<polyline points="${pts(a)}" fill="none" stroke="${stroke}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round" ${extra}/>`;
+  const txt = (lo, la, t, size, col, extra = '') => { const [x, y] = P(lo, la); return `<text x="${x}" y="${y}" fill="${col}" font-size="${size}" text-anchor="middle" ${extra}>${t}</text>`; };
 
   const BORDER_MX = [[-117.1,32.5],[-114.7,32.7],[-111,31.3],[-108.2,31.3],[-106.5,31.8],[-104.5,29.6],[-103,29],[-101.4,29.8],[-99.5,27.5],[-97.4,25.9]];
-  const LAND = [[-128,62],[-128,51],[-127,50.2],[-125.5,49],[-124.7,48.4],[-124.1,46.2],[-124,43],[-124.2,40.4],[-123,38],[-122.5,37.7],[-121.9,36.5],[-120.6,34.6],[-118.5,34],[-117.1,32.5],
-    ...BORDER_MX.slice(1),
-    [-97.4,27.8],[-95,29.2],[-93.8,29.7],[-91,29.2],[-89.4,29],[-89.6,30.2],[-88,30.4],[-85.4,29.7],[-84,30],[-82.8,28],[-82.6,27],[-81.8,26],[-80.9,25.1],[-80.1,25.8],[-80,26.7],[-80.6,28.4],[-81.4,30.4],[-81.1,31.9],[-79.5,33.2],[-78,33.9],[-76.5,34.7],[-75.5,35.3],[-76,36.9],[-75.6,37.9],[-75,38.8],[-74,40.5],[-72,41],[-70,41.6],[-70.6,42.6],[-70.2,43.7],[-67,44.8],[-66,45.2],[-65.8,43.8],[-63.5,44.6],[-61,45.3],[-62.5,45.8],[-64.5,46.3],[-64.7,47.8],[-64.5,48.8],[-67,49.2],[-69.6,48.1],[-68,49.3],[-66.5,50.2],[-61,50.2],[-57.5,51.4],[-56,52.5],[-57.5,54],[-60,55.3],[-61.8,56.5],[-63,58],[-64.4,60],[-64.8,62]];
+  const GOLF = [[-97.4,25.9],[-97.4,27.8],[-95,29.2],[-93.8,29.7],[-91,29.2],[-89.4,29],[-89.6,30.2],[-88,30.4],[-85.4,29.7],[-84,30]];
+  const OSTKUESTE = [[-84,30],[-82.8,28],[-82.6,27],[-81.8,26],[-80.9,25.1],[-80.1,25.8],[-80,26.7],[-80.6,28.4],[-81.4,30.4],[-81.1,31.9],[-79.5,33.2],[-78,33.9],[-76.5,34.7],[-75.5,35.3],[-76,36.9],[-75.6,37.9],[-75,38.8],[-74,40.5],[-72,41],[-70,41.6],[-70.6,42.6],[-70.2,43.7],[-67,44.8]];
+  const PAZIFIK = [[-124.7,48.4],[-124.1,46.2],[-124,43],[-124.2,40.4],[-123,38],[-122.5,37.7],[-121.9,36.5],[-120.6,34.6],[-118.5,34],[-117.1,32.5]];
+  const LAND = [[-128,62],[-128,51],[-127,50.2],[-125.5,49], ...PAZIFIK, ...BORDER_MX.slice(1), ...GOLF.slice(1), ...OSTKUESTE.slice(1),
+    [-66,45.2],[-65.8,43.8],[-63.5,44.6],[-61,45.3],[-62.5,45.8],[-64.5,46.3],[-64.7,47.8],[-64.5,48.8],[-67,49.2],[-69.6,48.1],[-68,49.3],[-66.5,50.2],[-61,50.2],[-57.5,51.4],[-56,52.5],[-57.5,54],[-60,55.3],[-61.8,56.5],[-63,58],[-64.4,60],[-64.8,62]];
   const MEXIKO = [[-117.1,32.5],[-116.3,30.5],[-114.3,28],[-112.3,26],[-111.2,24],[-110.4,24],[-111.5,26],[-112.8,28.5],[-114.3,30.5],[-114.8,31.8],[-113,31.3],[-111.8,29],[-110,27.5],[-108.6,25.4],[-107.6,24],[-97.8,24],...BORDER_MX.slice().reverse()];
   const HUDSON = [[-94.2,58.8],[-92.4,57.1],[-88.5,56.2],[-85,55.2],[-82.3,52.9],[-80.5,51.3],[-79,51.6],[-78.9,54.5],[-77.4,56.5],[-78,58.5],[-77.5,60.5],[-78.2,62],[-92.5,62],[-94.5,60.2]];
   const SEEN = [
@@ -626,60 +617,58 @@ document.getElementById('orte').innerHTML = ORTE.map(o =>
     [[-79.8,43.3],[-78,43.4],[-76.3,43.5],[-76.3,44.2],[-77.5,44],[-79.4,43.7]]
   ];
   const GRENZE_CA = [[-125.5,49],[-123,49],[-95.2,49],[-95.2,49.4],[-94.6,48.7],[-92,48.4],[-89.6,48],[-84.6,46.5],[-83.4,46],[-82.5,45.3],[-82.5,43],[-83.2,42.1],[-79,42.9],[-79.4,43.7],[-76.3,44.2],[-74.7,45],[-71.5,45],[-70.5,45.8],[-69.2,47.4],[-67.8,47.1],[-67.8,45.6],[-67,44.8]];
+  const ROCKY_FRONT = [[-105.3,32.5],[-105.3,35.5],[-105,37],[-104.9,38.5],[-105,40],[-105.3,41.5],[-106.5,43],[-107,44.8],[-109,45],[-110.5,46],[-112,47.5],[-113,49]];
+  const APP_RAND = [[-83.4,43.9],[-82.5,42],[-81,41.2],[-82.5,39.5],[-84.5,37.5],[-86,36],[-87.5,34.5],[-86.5,33.5],[-84.5,33.8],[-84,30]];
 
-  const R = [
-    { n: 1, name: 'Küstengebirge', f: '#8a6f4e', p: [[-124.7,48.4],[-124.1,46.2],[-124,43],[-124.2,40.4],[-123,38],[-122.5,37.7],[-121.9,36.5],[-120.6,34.6],[-118.5,34],[-117.1,32.5],[-116.6,32.6],[-116.5,33.5],[-118.5,34.6],[-120.4,35.6],[-121.4,37.6],[-122,39.2],[-122.5,40.6],[-123.3,42],[-123.2,44],[-123.2,47.5]], b: [[-126.7,42.6,-123.7,42.6]] },
-    { n: 2, name: 'Kalifornisches Längstal', f: '#7fc77a', p: [[-122.4,40.6],[-121.8,40.5],[-121.2,39],[-120.5,37.5],[-119,36],[-118.9,35.1],[-119.5,35],[-120.3,36.2],[-121.3,37.8],[-122,39.2]], b: [[-126.7,39.0,-121.2,38.4]] },
-    { n: 3, name: 'Sierra Nevada (Süden) / Kaskadengebirge (Norden)', f: '#c96a4a', p: [[-121.8,40.5],[-120.8,40.3],[-119.6,39],[-118.2,36.8],[-118,35.4],[-118.9,35.1],[-119,36],[-120.5,37.5],[-121.2,39]], b: [[-126.7,35.4,-118.8,36.6],[-126.7,46.2,-121.7,46.2]] },
-    { n: 3, f: '#c96a4a', p: [[-122.9,49],[-120.8,49],[-121,46],[-121.2,43.5],[-121.3,41.5],[-121.8,40.5],[-122.4,40.6],[-122.4,42],[-122.3,44],[-122.1,46],[-122.2,48]] },
-    { n: 4, name: 'Becken und Plateaus (Great Basin, Colorado-Plateau, Columbia-Plateau)', f: '#d9b26a', p: [[-120.8,49],[-118,49],[-116.5,46.5],[-117,44.8],[-114.5,44],[-112.5,43.5],[-111.5,42],[-111.8,40.5],[-110.5,40.4],[-107,39.5],[-107.2,37.5],[-106.5,35.5],[-108,34.5],[-111,34.3],[-113,33.5],[-114.7,32.7],[-116.6,32.6],[-116.5,33.5],[-118,35.4],[-118.2,36.8],[-119.6,39],[-120.8,40.3],[-121.3,41.5],[-121.2,43.5],[-121,46]], b: [[-116.3,39.8]] },
-    { n: 5, name: 'Rocky Mountains', f: '#a0522d', p: [[-118,49],[-113,49],[-112,47.5],[-110.5,46],[-109,45],[-107,44.8],[-106.5,43],[-105.3,41.5],[-105,40],[-104.9,38.5],[-105,37],[-105.3,35.5],[-106.5,35.5],[-107.2,37.5],[-107,39.5],[-110.5,40.4],[-111.8,40.5],[-111.5,42],[-112.5,43.5],[-114.5,44],[-117,44.8],[-116.5,46.5]], b: [[-114.3,46.6]] },
-    { n: 6, name: 'Great Plains', f: '#e3d27a', p: [[-113,49],[-99,49],[-98.5,45],[-97.5,40],[-97.5,33],[-99.5,29.8],[-101.4,29.8],[-103,29],[-104.5,29.6],[-105.3,32.5],[-105.3,35.5],[-105,37],[-104.9,38.5],[-105,40],[-105.3,41.5],[-106.5,43],[-107,44.8],[-109,45],[-110.5,46],[-112,47.5]], b: [[-102.2,42.5]] },
-    { n: 7, name: 'Zentrales Tiefland (Mississippi-Tiefland)', f: '#9fd18b', p: [[-99,49],[-95.2,49],[-92.1,46.7],[-88,45.6],[-84.6,45.6],[-83.4,43.9],[-82.5,42],[-81,41.2],[-82.5,39.5],[-84.5,37.5],[-86,36],[-87.5,34.5],[-88.5,35],[-89.2,37],[-90.5,36.5],[-92,35],[-94.5,34],[-96.5,33],[-97.5,33],[-97.5,40],[-98.5,45]], b: [[-92.5,41.2]] },
-    { n: 8, name: 'Kanadischer Schild', f: '#b98fc9', p: [[-112,62],[-108,58],[-102,55.5],[-97,52],[-95.2,49.4],[-94.6,48.7],[-92,48.4],[-89.6,48],[-84.6,46.5],[-81.5,46],[-79.5,45],[-76.3,44.5],[-75,45.6],[-71.2,46.8],[-69.6,48.1],[-67,49.6],[-66.5,50.2],[-61,50.2],[-57.5,51.4],[-56,52.5],[-57.5,54],[-60,55.3],[-61.8,56.5],[-63,58],[-64.4,60],[-64.8,62]], b: [[-101,58.6],[-70,54.5]] },
-    { n: 9, name: 'Appalachen', f: '#5b8f5a', p: [[-81,41.2],[-80.5,42],[-78,42.5],[-75.5,42.8],[-74,44.6],[-73.3,45],[-71.5,45],[-70.5,45.8],[-69.2,47.4],[-67.8,47.1],[-67.8,45.6],[-67,44.8],[-70.2,43.7],[-70.6,42.6],[-71.5,42.2],[-73.5,41.3],[-75,40.6],[-77,39.6],[-78.5,38],[-80,36.3],[-82,34.8],[-84.5,33.8],[-86.5,33.5],[-87.5,34.5],[-86,36],[-84.5,37.5],[-82.5,39.5]], b: [[-80.2,39.2]] },
-    { n: 10, name: 'Küstenebenen (Atlantik und Golf von Mexiko)', f: '#e8e0b8', p: [[-74,40.5],[-75,40.6],[-77,39.6],[-78.5,38],[-80,36.3],[-82,34.8],[-84.5,33.8],[-86.5,33.5],[-87.5,34.5],[-88.5,35],[-89.2,37],[-90.5,36.5],[-92,35],[-94.5,34],[-96.5,33],[-97.5,33],[-99.5,29.8],[-99.5,27.5],[-97.4,25.9],[-97.4,27.8],[-95,29.2],[-93.8,29.7],[-91,29.2],[-89.4,29],[-89.6,30.2],[-88,30.4],[-85.4,29.7],[-84,30],[-82.8,28],[-82.6,27],[-81.8,26],[-80.9,25.1],[-80.1,25.8],[-80,26.7],[-80.6,28.4],[-81.4,30.4],[-81.1,31.9],[-79.5,33.2],[-78,33.9],[-76.5,34.7],[-75.5,35.3],[-76,36.9],[-75.6,37.9],[-75,38.8]], b: [[-89.6,32.2],[-78.2,35.6]] }
-  ];
-  const FL = [
-    { k: 'A', name: 'Mississippi', p: [[-95.2,47.2],[-93.1,44.9],[-91.2,43],[-91.4,40.4],[-90.2,38.6],[-89.2,37],[-89.7,35],[-91.1,32.3],[-91.6,31],[-90.1,30],[-89.4,29]], b: [-90.6,35.6] },
-    { k: 'B', name: 'Missouri', p: [[-111.5,45.9],[-109,47.8],[-104,48],[-100.5,46.8],[-100.3,44.4],[-97.4,42.8],[-95.9,41.2],[-94.6,39.1],[-92.2,38.6],[-90.2,38.8]], b: [-99.0,45.6] },
-    { k: 'C', name: 'Ohio', p: [[-80,40.4],[-81.6,39.3],[-82.6,38.6],[-84.5,39.1],[-85.8,38.3],[-87.6,37.9],[-89.2,37]], b: [-85.5,39.6] },
-    { k: 'D', name: 'Colorado', p: [[-105.8,40.2],[-108.6,39.1],[-109.6,38.2],[-110.8,37.1],[-111.6,36.4],[-112.2,36.1],[-114,36],[-114.6,35],[-114.7,32.7]], b: [-112.2,37.2] },
-    { k: 'E', name: 'Rio Grande', p: [[-106.6,37.7],[-106.6,35.1],[-106.9,32.3],[-106.5,31.8],[-104.5,29.6],[-103,29],[-101.4,29.8],[-99.5,27.5],[-97.4,25.9]], b: [-105.2,31.4] },
-    { k: 'F', name: 'St.-Lorenz-Strom', p: [[-76.3,44.2],[-75,45],[-73.5,45.5],[-71.2,46.8],[-69.6,48.1]], b: [-72.8,47.6] }
-  ];
+  const WESTEN = [...PAZIFIK, ...BORDER_MX.slice(1, 5), ...ROCKY_FRONT, [-123,49]];
+  const ZENTRAL = [...ROCKY_FRONT.slice().reverse(), [-95.2,49], [-92.1,46.7], [-88,45.6], [-84.6,45.6], ...APP_RAND, ...GOLF.slice().reverse(), ...BORDER_MX.slice(4).reverse()];
+  const OSTEN = [[-81,41.2],[-80.5,42],[-78,42.5],[-75.5,42.8],[-74,44.6],[-73.3,45],[-71.5,45],[-70.5,45.8],[-69.2,47.4],[-67.8,47.1],[-67.8,45.6], ...OSTKUESTE.slice().reverse(), ...APP_RAND.slice(3).reverse().slice(1)];
+  const MISS = [[-95.2,47.2],[-93.1,44.9],[-91.2,43],[-91.4,40.4],[-90.2,38.6],[-89.2,37],[-89.7,35],[-91.1,32.3],[-91.6,31],[-90.1,30],[-89.4,29]];
 
-  let s = '';
-  s += `<rect width="368" height="266" fill="#13283d"/>`;
+  let s = `<svg viewBox="0 0 400 266" role="img" aria-label="Karte: Westen, Zentrale Tiefländer, Osten">`;
+  s += `<defs>
+    <marker id="mw" markerWidth="7" markerHeight="7" refX="4" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="#ff6b5e"/></marker>
+    <marker id="mk" markerWidth="7" markerHeight="7" refX="4" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="#6fd3ff"/></marker>
+    <marker id="mg" markerWidth="7" markerHeight="7" refX="4" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="#f2f2ee"/></marker></defs>`;
+  s += `<rect width="400" height="266" fill="#13283d"/>`;
   s += poly(LAND, '#3a3f47');
   s += poly(MEXIKO, '#2c3036');
-  R.forEach(r => { s += poly(r.p, r.f, 'opacity="0.92"'); });
+  s += poly(WESTEN, '#b5703f');
+  s += poly(ZENTRAL, '#8fc276');
+  s += poly(OSTEN, '#4f8a55');
   s += poly(HUDSON, '#13283d');
   SEEN.forEach(p => { s += poly(p, '#4f8fd6'); });
-  s += line(GRENZE_CA, '#f2f2ee', 1, 'stroke-dasharray="3 3" opacity="0.6"');
-  s += line(BORDER_MX.slice(0, 6), '#f2f2ee', 1, 'stroke-dasharray="3 3" opacity="0.6"');
-  FL.forEach(f => { s += line(f.p, '#1f6fd1', 2.6); });
-  const txt = (lo, la, t, size, col, anchor = 'middle', style = '') => { const [x, y] = P(lo, la); return `<text x="${x}" y="${y}" fill="${col}" font-size="${size}" text-anchor="${anchor}" ${style}>${t}</text>`; };
-  s += txt(-126.4, 30, 'Pazifik', 15, '#6fb3ff', 'start', 'font-style="italic" font-weight="700"');
-  s += txt(-66, 36, 'Atlantik', 15, '#6fb3ff', 'middle', 'font-style="italic" font-weight="700"');
-  s += txt(-91, 25.4, 'Golf von Mexiko', 13, '#6fb3ff', 'middle', 'font-style="italic" font-weight="700"');
-  s += txt(-86.5, 59.6, 'Hudson Bay', 13, '#6fb3ff', 'middle', 'font-style="italic" font-weight="700"');
-  s += txt(-104.5, 27.2, 'MEXIKO', 12, '#8d939c', 'middle', 'font-weight="700" letter-spacing="1"');
-  s += txt(-120, 56, 'KANADA', 13, '#8d939c', 'middle', 'font-weight="700" letter-spacing="1"');
-  s += txt(-87, 44.0, 'G', 12, '#f2f2ee', 'middle', 'font-weight="800"');
-  const badge = (lo, la, t, bg, fg) => { const [x, y] = P(lo, la); return `<circle cx="${x}" cy="${y}" r="9.5" fill="${bg}" stroke="#0d0f12" stroke-width="1.5"/><text x="${x}" y="${(+y + 4.5).toFixed(1)}" fill="${fg}" font-size="13" font-weight="800" text-anchor="middle">${t}</text>`; };
-  FL.forEach(f => { s += badge(f.b[0], f.b[1], f.k, '#1f6fd1', '#ffffff'); });
-  R.forEach(r => (r.b || []).forEach(([lo, la, zlo, zla]) => { if (zlo !== undefined) s += line([[lo, la], [zlo, zla]], '#f2f2ee', 1.5); s += badge(lo, la, r.n, '#0d0f12', '#f2f2ee'); }));
-  const svg = (vb, label) => `<svg viewBox="${vb}" role="img" aria-label="${label}">${s}</svg>`;
-  const uhr = window.matchMedia('(max-width: 230px)').matches;
-  document.getElementById('karte').innerHTML = uhr
-    ? `<p class="m">Westen</p>${svg('0 70 188 196', 'Karte Westen')}<p class="m">Osten</p>${svg('140 0 228 266', 'Karte Osten')}`
-    : svg('0 0 368 266', 'Karte der Naturräume Nordamerikas');
-
-  const leg = R.filter(r => r.name).map(r => `<div class="leg"><span class="nr" style="background:${r.f}">${r.n}</span><span>${r.name}</span></div>`).join('')
-    + FL.map(f => `<div class="leg"><span class="nr fl">${f.k}</span><span>${f.name}</span></div>`).join('')
-    + `<div class="leg"><span class="nr see">G</span><span>Große Seen</span></div>`;
-  document.getElementById('legende').innerHTML = leg;
+  s += line(GRENZE_CA, '#f2f2ee', 1, 'stroke-dasharray="3 3" opacity="0.55"');
+  s += line(BORDER_MX.slice(0, 6), '#f2f2ee', 1, 'stroke-dasharray="3 3" opacity="0.55"');
+  s += line(MISS, '#1f5fb8', 3);
+  // Strömungen und Wind
+  s += line([[-80.3,24.8],[-79.6,29],[-76.5,33.5],[-71,37.5],[-62,40.5]], '#ff6b5e', 3, 'marker-end="url(#mw)"');
+  s += line([[-55,58],[-53.5,53],[-55.5,48.5],[-61.5,44]], '#6fd3ff', 3, 'marker-end="url(#mk)"');
+  [43.5, 40].forEach(la => { s += line([[-127.6, la], [-124.9, la]], '#f2f2ee', 2.5, 'marker-end="url(#mg)"'); });
+  // Beschriftung
+  const fett = 'font-weight="800" stroke="#0d0f12" stroke-width="3" paint-order="stroke"';
+  s += txt(-115.5, 41.5, 'Westen', 21, '#ffffff', fett);
+  s += txt(-115.5, 38.6, '(Kordilleren)', 14, '#ffffff', fett.replace('800', '700'));
+  s += txt(-96.5, 41, 'Zentrale', 20, '#ffffff', fett);
+  s += txt(-96.5, 37.8, 'Tiefländer', 20, '#ffffff', fett);
+  s += txt(-69.5, 31.6, 'Osten', 21, '#ffffff', fett);
+  s += line([[-72.5,32.8],[-78.6,34.6]], '#f2f2ee', 1.5);
+  s += txt(-121.5, 29.5, 'Pazifik', 15, '#6fb3ff', 'font-style="italic" font-weight="700"');
+  s += txt(-60, 27.5, 'Atlantik', 15, '#6fb3ff', 'font-style="italic" font-weight="700"');
+  s += txt(-91.8, 25.6, 'Golf von Mexiko', 13, '#6fb3ff', 'font-style="italic" font-weight="700"');
+  s += txt(-64.5, 36.6, 'Golfstrom', 13, '#ff6b5e', 'font-weight="800" stroke="#13283d" stroke-width="3" paint-order="stroke"');
+  s += txt(-64.5, 34.7, '(warm)', 12, '#ff6b5e', 'font-weight="700"');
+  s += txt(-62, 51.2, 'Labradorstrom', 13, '#6fd3ff', 'font-weight="800" stroke="#13283d" stroke-width="3" paint-order="stroke"');
+  s += txt(-62, 49.3, '(kalt)', 12, '#6fd3ff', 'font-weight="700" stroke="#13283d" stroke-width="3" paint-order="stroke"');
+  s += txt(-86.5, 59.6, 'Hudson Bay', 13, '#6fb3ff', 'font-style="italic" font-weight="700"');
+  s += txt(-112, 55.5, 'KANADA', 14, '#8d939c', 'font-weight="700" letter-spacing="1"');
+  s += txt(-104.5, 27.2, 'MEXIKO', 12, '#8d939c', 'font-weight="700" letter-spacing="1"');
+  s += txt(-85.5, 50.2, 'Große Seen', 13, '#ffffff', fett.replace('800', '700'));
+  s += line([[-85.5,49.4],[-86.6,47.6]], '#f2f2ee', 1.2);
+  s += txt(-97.5, 31.8, 'Mississippi', 12, '#ffffff', 'font-weight="700" stroke="#0d0f12" stroke-width="3" paint-order="stroke"');
+  s += line([[-93.5,32.1],[-91.2,32.4]], '#f2f2ee', 1.2);
+  s += '</svg>';
+  document.getElementById('karte').innerHTML = s;
 })();
 
 </script>
