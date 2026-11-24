@@ -62,6 +62,13 @@
 
   .formel { font-weight: 800; font-size: 1.05rem; text-align: center; padding: 8px 0; }
 
+  .inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 6px 0; }
+  .inputs label { display: flex; flex-direction: column; gap: 3px; font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+  .inputs input {
+    width: 100%; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--bg); color: var(--ink); font: inherit; font-weight: 700;
+  }
+  .inputs input:focus { outline: 2px solid var(--acc); border-color: transparent; }
   .step { padding: 7px 0; border-bottom: 1px solid var(--line); }
   .step:last-child { border-bottom: 0; }
   .step .t { color: var(--muted); font-size: 0.8rem; font-weight: 700; }
@@ -92,6 +99,9 @@
     .row { grid-template-columns: 1fr; gap: 0; padding: 5px 0; }
     .m { font-size: 0.72rem; }
     .formel { font-size: 0.95rem; padding: 5px 0; }
+    .inputs { grid-template-columns: 1fr; gap: 4px; }
+    .inputs label { font-size: 0.72rem; }
+    .inputs input { padding: 4px 6px; font-size: 0.95rem; border-radius: 7px; }
     .step .t { font-size: 0.72rem; }
     .res { font-size: 1rem; }
     summary { padding: 6px 0; }
@@ -119,15 +129,6 @@
       <p class="m">Wolke beginnt am Kondensationsniveau. In der Wolke nur 0,5 °C, weil Kondensation Wärme freisetzt. Liegt der Gipfel tiefer: keine Wolke, überall 1 °C.</p>
     </div>
 
-    <h2>Beispiel</h2>
-    <div class="card">
-      <p class="m">10 °C auf 0 m · Wolke ab 1600 m · Gipfel 3000 m</p>
-      <div class="step"><div class="c">0 → 1600 m: 10 − 16 = <b>−6 °C</b></div></div>
-      <div class="step"><div class="c">1600 → 3000 m: −6 − 7 = <b>−13 °C</b></div></div>
-      <div class="step"><div class="c">3000 → 0 m: −13 + 30 = <span class="res">17 °C</span></div></div>
-      <div class="step"><div class="c">Föhn: 17 − 10 = <b>7 °C</b> wärmer</div></div>
-    </div>
-
     <h2>Steigungsregen</h2>
     <div class="card">
       <div class="row"><div class="k">Luv</div><div>Seite zum Wind. Feuchte Meeresluft muss hoch, kühlt ab → Wolken → <b>Regen</b></div></div>
@@ -142,6 +143,19 @@
         <li>Längstal, Great Basin, Great Plains im Lee: <b>250–500 mm</b>/Jahr</li>
       </ul>
     </div>
+
+    <h2>Rechner</h2>
+    <div class="card">
+      <div class="inputs" id="calc">
+        <label>Temperatur am Start (°C)<input inputmode="decimal" autocomplete="off" data-k="t0" value="10"></label>
+        <label>Höhe am Start (m)<input inputmode="decimal" autocomplete="off" data-k="h0" value="0"></label>
+        <label>Wolke ab (m)<input inputmode="decimal" autocomplete="off" data-k="kn" value="1600"></label>
+        <label>Gipfel (m)<input inputmode="decimal" autocomplete="off" data-k="g" value="3000"></label>
+        <label>Ziel im Lee (m)<input inputmode="decimal" autocomplete="off" data-k="he" value="0"></label>
+        <label>Rate in der Wolke (°C)<input inputmode="decimal" autocomplete="off" data-k="f" value="0,5"></label>
+      </div>
+    </div>
+    <div class="card" id="out"></div>
   </section>
 
   <!-- ================= KLIMADIAGRAMM ================= -->
@@ -313,7 +327,43 @@ tabs.forEach(b => b.addEventListener('click', () => {
   window.scrollTo(0, 0);
 }));
 
-const fmt = n => (Math.round(n * 10) / 10).toString().replace('.', ',');
+const fmt = n => (Math.round(n * 10) / 10).toString().replace('.', ',').replace('-', '−');
+const parse = s => parseFloat(String(s).trim().replace(',', '.').replace('−', '-'));
+
+/* ===== Luv/Lee-Rechner ===== */
+function rechne() {
+  const v = {};
+  let ok = true;
+  document.querySelectorAll('#calc input').forEach(i => { v[i.dataset.k] = parse(i.value); if (!isFinite(v[i.dataset.k])) ok = false; });
+  const out = document.getElementById('out');
+  if (!ok) { out.innerHTML = '<div class="step m">Bitte alle Felder mit Zahlen füllen.</div>'; return; }
+  const { t0, h0, kn, g, he, f } = v;
+  if (g <= h0) { out.innerHTML = '<div class="step m">Der Gipfel muss höher liegen als der Start.</div>'; return; }
+  if (he > g) { out.innerHTML = '<div class="step m">Das Ziel im Lee darf nicht höher als der Gipfel sein.</div>'; return; }
+  let nr = 0;
+  const zeile = (t, c) => `<div class="step"><div class="t">${++nr} · ${t}</div><div class="c">${c}</div></div>`;
+  const m = d => fmt(d / 100);
+  let html = '', tg;
+  if (kn >= g) {
+    tg = t0 - (g - h0) / 100;
+    html += zeile(`Hoch ohne Wolke: ${fmt(h0)} → ${fmt(g)} m`, `${m(g - h0)} × 1 = ${fmt((g - h0) / 100)} → ${fmt(t0)} − ${fmt((g - h0) / 100)} = <b>${fmt(tg)} °C</b>`);
+    html += '<div class="step m">Gipfel liegt unter der Wolkengrenze: keine Wolke, kein Regen.</div>';
+  } else {
+    const start = Math.max(kn, h0);
+    const tk = t0 - (start - h0) / 100;
+    if (start > h0) html += zeile(`Hoch bis zur Wolke: ${fmt(h0)} → ${fmt(start)} m`, `${m(start - h0)} × 1 = ${fmt((start - h0) / 100)} → ${fmt(t0)} − ${fmt((start - h0) / 100)} = <b>${fmt(tk)} °C</b>`);
+    const d = (g - start) / 100 * f;
+    tg = tk - d;
+    html += zeile(`In der Wolke: ${fmt(start)} → ${fmt(g)} m`, `${m(g - start)} × ${fmt(f)} = ${fmt(d)} → ${fmt(tk)} − ${fmt(d)} = <b>${fmt(tg)} °C</b>`);
+  }
+  const up = (g - he) / 100;
+  const te = tg + up;
+  html += zeile(`Im Lee runter: ${fmt(g)} → ${fmt(he)} m`, `${m(g - he)} × 1 = ${fmt(up)} → ${fmt(tg)} + ${fmt(up)} = <span class="res">${fmt(te)} °C</span>`);
+  if (he === h0) html += zeile('Föhneffekt', `${fmt(te)} − ${fmt(t0)} = <b>${fmt(te - t0)} °C</b> wärmer im Lee`);
+  out.innerHTML = html;
+}
+document.getElementById('calc').addEventListener('input', rechne);
+rechne();
 
 /* ===== Klimadiagramm Sacramento ===== */
 const MON = ['J','F','M','A','M','J','J','A','S','O','N','D'];
