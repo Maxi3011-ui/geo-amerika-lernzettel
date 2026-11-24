@@ -72,7 +72,7 @@
   .step { padding: 7px 0; border-bottom: 1px solid var(--line); }
   .step:last-child { border-bottom: 0; }
   .step .t { color: var(--muted); font-size: 0.8rem; font-weight: 700; }
-  .step .c { font-weight: 700; }
+  .step .c { font-weight: 400; }
   .res { font-size: 1.15rem; font-weight: 800; color: var(--acc); }
 
   details { border-bottom: 1px solid var(--line); }
@@ -120,28 +120,69 @@
 
   <!-- ================= LUV / LEE ================= -->
   <section id="luv">
+    <h2>Wie Luv und Lee funktionieren</h2>
+    <div class="card">
+      <svg viewBox="0 0 240 150" role="img" aria-label="Skizze Luv und Lee">
+        <polygon points="70,135 125,30 135,30 200,135" fill="#3a3326" stroke="#8d939c" stroke-width="1.5"/>
+        <line x1="10" y1="80" x2="230" y2="80" stroke="#8d939c" stroke-dasharray="4 3"/>
+        <text x="236" y="94" fill="#8d939c" font-size="13" text-anchor="end">Wolkengrenze</text>
+        <ellipse cx="108" cy="60" rx="26" ry="14" fill="#c9ced6"/>
+        <ellipse cx="92" cy="68" rx="18" ry="10" fill="#c9ced6"/>
+        <g stroke="#6fb3ff" stroke-width="2"><line x1="84" y1="84" x2="80" y2="94"/><line x1="94" y1="84" x2="90" y2="94"/><line x1="104" y1="80" x2="100" y2="90"/></g>
+        <path d="M8,135 L55,135 Q75,135 85,100 L118,40" fill="none" stroke="#ff6b5e" stroke-width="2.5" marker-end="url(#pf)"/>
+        <path d="M142,40 L195,128" fill="none" stroke="#e8a33d" stroke-width="2.5" marker-end="url(#pf2)"/>
+        <defs>
+          <marker id="pf" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="#ff6b5e"/></marker>
+          <marker id="pf2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="#e8a33d"/></marker>
+        </defs>
+        <text x="30" y="20" fill="#6ad19a" font-size="16" font-weight="700" text-anchor="middle">Luv</text>
+        <text x="210" y="20" fill="#e8a33d" font-size="16" font-weight="700" text-anchor="middle">Lee</text>
+        <text x="8" y="128" fill="#f2f2ee" font-size="14">10 °C</text>
+        <text x="30" y="98" fill="#f2f2ee" font-size="14">−6 °C</text>
+        <text x="130" y="22" fill="#f2f2ee" font-size="14" text-anchor="middle">−13 °C</text>
+        <text x="232" y="128" fill="#f2f2ee" font-size="14" text-anchor="end">17 °C</text>
+        <text x="8" y="149" fill="#6fb3ff" font-size="13">Wind →</text>
+      </svg>
+      <p class="m">Der Wind kommt von links (Luv) und steigt auf. Ab der Wolkengrenze (Kondensationsniveau) regnet es. Rechts (Lee) sinkt die Luft wieder ab.</p>
+    </div>
+
+    <h2>Der Weg der Luft</h2>
+    <div class="card">
+      <div class="step"><div class="t">1 · Über dem Meer</div><div class="c">Der Wind (in den USA die Westwinde vom Pazifik) nimmt über dem Ozean viel <b>Wasserdampf</b> auf. Die Luft ist feucht, aber noch ohne Wolken.</div></div>
+      <div class="step"><div class="t">2 · Aufstieg im Luv</div><div class="c">Ein Gebirge steht im Weg. Die Luft wird <b>gezwungen aufzusteigen</b>. Oben ist der Luftdruck geringer, die Luft dehnt sich aus und <b>kühlt um 1 °C pro 100 m</b> ab (trockenadiabatisch).</div></div>
+      <div class="step"><div class="t">3 · Kondensationsniveau</div><div class="c"><b>Kalte Luft kann weniger Wasserdampf speichern als warme.</b> In einer bestimmten Höhe ist die Luft gesättigt (100 % Luftfeuchte). Der Wasserdampf kondensiert zu Tröpfchen → es bilden sich <b>Wolken</b>.</div></div>
+      <div class="step"><div class="t">4 · In der Wolke</div><div class="c">Beim Kondensieren wird <b>Wärme frei</b>. Darum kühlt die Luft jetzt nur noch um <b>0,5 °C pro 100 m</b> ab (feuchtadiabatisch). Die Tropfen werden schwer und fallen: <b>Steigungsregen</b> im Luv. Die Luft verliert dabei ihr Wasser.</div></div>
+      <div class="step"><div class="t">5 · Am Gipfel</div><div class="c">Die Luft ist kalt und hat den Großteil ihres Wassers abgeregnet.</div></div>
+      <div class="step"><div class="t">6 · Abstieg im Lee</div><div class="c">Die Luft sinkt, wird zusammengedrückt und <b>erwärmt sich um 1 °C pro 100 m</b>, und zwar auf der ganzen Strecke. Die Wolken lösen sich auf, es regnet kaum: <b>Regenschatten</b>.</div></div>
+      <div class="step"><div class="t">Ergebnis</div><div class="c">Unten im Lee ist die Luft <b>wärmer und trockener</b> als auf gleicher Höhe im Luv. Grund: Im Luv kühlte sie ein Stück nur mit 0,5 °C ab, im Lee erwärmt sie sich überall mit 1 °C. Dieser warme, trockene Fallwind heißt <b>Föhn</b>.</div></div>
+    </div>
+
+    <h2>Begriffe</h2>
+    <div class="card">
+      <div class="row"><div class="k">Luv</div><div>die dem Wind zugewandte Seite: feucht, viel Regen</div></div>
+      <div class="row"><div class="k">Lee</div><div>die dem Wind abgewandte Seite: trocken, warm</div></div>
+      <div class="row"><div class="k">Kondensations&shy;niveau</div><div>Höhe, ab der sich Wolken bilden</div></div>
+      <div class="row"><div class="k">Steigungsregen</div><div>Regen, weil Luft am Gebirge aufsteigen muss</div></div>
+      <div class="row"><div class="k">Regenschatten</div><div>trockenes Gebiet im Lee eines Gebirges</div></div>
+      <div class="row"><div class="k">Föhn</div><div>warmer, trockener Fallwind im Lee (in den USA: Chinook an den Rocky Mountains)</div></div>
+    </div>
+
     <h2>So rechnest du</h2>
     <div class="card">
       <div class="step"><div class="t">1 · Hoch bis zur Wolke</div><div class="c"><b>−1 °C</b> pro 100 m</div></div>
       <div class="step"><div class="t">2 · In der Wolke bis zum Gipfel</div><div class="c"><b>−0,5 °C</b> pro 100 m <span class="m">(manche Bücher: 0,6)</span></div></div>
       <div class="step"><div class="t">3 · Im Lee runter</div><div class="c"><b>+1 °C</b> pro 100 m</div></div>
-      <div class="step"><div class="t">4 · Föhneffekt</div><div class="c">Lee − Luv (gleiche Höhe)</div></div>
-      <p class="m">Wolke beginnt am Kondensationsniveau. In der Wolke nur 0,5 °C, weil Kondensation Wärme freisetzt. Liegt der Gipfel tiefer: keine Wolke, überall 1 °C.</p>
+      <div class="step"><div class="t">4 · Föhneffekt</div><div class="c">Temperatur Lee − Temperatur Luv (auf gleicher Höhe)</div></div>
+      <p class="m">Höhenunterschied in m ÷ 100 × Rate = Temperaturänderung. Liegt der Gipfel unter dem Kondensationsniveau, bildet sich keine Wolke: dann überall 1 °C.</p>
     </div>
 
-    <h2>Steigungsregen</h2>
+    <h2>Luv und Lee in den USA</h2>
     <div class="card">
-      <div class="row"><div class="k">Luv</div><div>Seite zum Wind. Feuchte Meeresluft muss hoch, kühlt ab → Wolken → <b>Regen</b></div></div>
-      <div class="row"><div class="k">Lee</div><div>Seite weg vom Wind. Luft sinkt, wird warm → <b>trocken</b> (Regenschatten)</div></div>
-      <div class="row"><div class="k">Warum?</div><div>Kalte Luft speichert weniger Wasser als warme</div></div>
-    </div>
-
-    <h2>In den USA</h2>
-    <div class="card">
-      <ul>
-        <li>Westküste im Luv: bis <b>3000 mm</b>/Jahr</li>
-        <li>Längstal, Great Basin, Great Plains im Lee: <b>250–500 mm</b>/Jahr</li>
-      </ul>
+      <div class="step"><div class="t">Westküste = Luv</div><div class="c">Die Westwinde vom Pazifik treffen auf die Kordilleren, die von Nord nach Süd verlaufen. Küstengebirge, Kaskaden und Sierra Nevada bekommen viel Regen: im Nordwesten bis <b>3000 mm</b> im Jahr (dort wächst sogar Regenwald).</div></div>
+      <div class="step"><div class="t">Kalifornisches Längstal = Lee</div><div class="c">Das Tal liegt im Lee der Küstengebirge und bekommt deutlich weniger Regen. Im Sommer ist es dort fast ganz trocken.</div></div>
+      <div class="step"><div class="t">Great Basin = Regenschatten</div><div class="c">Hinter der Sierra Nevada ist es sehr trocken, dort liegen Wüsten wie das Death Valley.</div></div>
+      <div class="step"><div class="t">Great Plains = Lee der Rockies</div><div class="c">Östlich der Rocky Mountains fallen nur <b>250–500 mm</b> im Jahr. Darum gibt es dort Steppe und Prärie statt Wald.</div></div>
+      <div class="step"><div class="t">Osten</div><div class="c">Feuchte Luft vom Atlantik und vom Golf von Mexiko, die Appalachen sind niedrig: ca. <b>1000 mm</b> im Jahr.</div></div>
     </div>
 
     <h2>Rechner</h2>
@@ -162,11 +203,11 @@
   <section id="diagramm" hidden>
     <h2>Lesen</h2>
     <div class="card">
-      <div class="row"><div class="k"><span class="r">Rot</span></div><div>Temperatur (°C, links)</div></div>
-      <div class="row"><div class="k"><span class="bl">Blau</span></div><div>Niederschlag (mm, rechts)</div></div>
-      <div class="row"><div class="k">Maßstab</div><div><b>10 °C = 20 mm</b></div></div>
-      <div class="row"><div class="k">Humid</div><div>Blau über Rot: Regen &gt; Verdunstung</div></div>
-      <div class="row"><div class="k">Arid</div><div>Blau unter Rot: Regen &lt; Verdunstung</div></div>
+      <div class="row"><div class="k"><span class="r">Rote Linie</span></div><div>Temperatur je Monat in °C, Achse links</div></div>
+      <div class="row"><div class="k"><span class="bl">Blaue Balken</span></div><div>Niederschlag je Monat in mm, Achse rechts</div></div>
+      <div class="row"><div class="k">Maßstab</div><div><b>10 °C = 20 mm</b>. Nur so kann man die Kurven vergleichen.</div></div>
+      <div class="row"><div class="k">Humid</div><div>Niederschlag liegt <b>über</b> der Temperatur: Es fällt mehr Regen, als verdunsten kann (feucht).</div></div>
+      <div class="row"><div class="k">Arid</div><div>Niederschlag liegt <b>unter</b> der Temperatur: Es kann mehr verdunsten, als fällt (trocken).</div></div>
     </div>
 
     <h2>Beispiel: Sacramento</h2>
@@ -240,70 +281,92 @@
 
   <!-- ================= USA ================= -->
   <section id="usa" hidden>
-    <h2>Klima</h2>
+    <h2>Klima der USA</h2>
     <div class="card">
-      <p>Meist <b>gemäßigte Zone</b>, aber sehr unterschiedlich.</p>
+      <p>Der Großteil der USA liegt in der <b>gemäßigten Zone</b>. Trotzdem ist das Klima sehr unterschiedlich, weil Gebirge, Meeresströmungen und die Entfernung zum Meer überall anders wirken.</p>
       <h3>Westen</h3>
       <ul>
-        <li>Westwinde vom Pazifik</li>
-        <li>Gebirge fangen den Regen ab: Küste bis 3000 mm, dahinter 250–500 mm</li>
-        <li>Kalifornien (Südwesten): <b>Winterregen</b>, Sommer trocken (Subtropenhoch)</li>
+        <li>Die USA liegen in der <b>Westwindzone</b>: Der Wind kommt meist vom Pazifik.</li>
+        <li>Die <b>Kordilleren</b> verlaufen von Nord nach Süd und fangen den Regen ab: Die Küste (Luv) bekommt bis 3000 mm, die Ebenen dahinter (Lee) nur 250–500 mm.</li>
+        <li>Kalifornien hat <b>subtropisches Winterregenklima</b> (wie am Mittelmeer): Im Winter bringen die Westwinde Regen, im Sommer liegt das <b>nordpazifische Subtropenhoch</b> davor und blockiert ihn → heiße, trockene Sommer.</li>
       </ul>
-      <h3>Mitte</h3>
+      <h3>Mitte (Zentrale Tiefländer)</h3>
       <ul>
-        <li>Norden kontinental (große ΔT), Süden feucht-warm vom Golf</li>
-        <li><b>Kein Ost-West-Gebirge</b> → kalte und warme Luft kommen ungehindert durch</li>
-        <li>Folge: Kälteeinbrüche (Northers), Tornados, Blizzards</li>
+        <li>Der Norden hat <b>kontinentales Klima</b>: weit weg vom Meer, darum kalte Winter, heiße Sommer, große ΔT.</li>
+        <li>Der Süden bekommt <b>feucht-warme, tropische Luft</b> vom Golf von Mexiko.</li>
+        <li>Es gibt <b>kein Gebirge von Ost nach West</b>. Kalte Luft aus der Arktis kann ungehindert bis zum Golf strömen, warme Luft vom Golf bis nach Kanada.</li>
+        <li>Folgen: plötzliche <b>Kälteeinbrüche</b> (Northers, Cold Waves) bis in den Süden, und wo kalte und warme Luft aufeinandertreffen, entstehen <b>Tornados</b> und <b>Blizzards</b>.</li>
       </ul>
       <h3>Osten</h3>
       <ul>
-        <li>Süden: <b>warmer Golfstrom</b> → feucht, mild</li>
-        <li>Norden: <b>kalter Labradorstrom</b> → kühl</li>
-        <li>ca. <b>1000 mm</b> Regen pro Jahr</li>
-        <li>New York: kalte Winter, Kaltluft kommt ungehindert von Norden</li>
+        <li>Vor der südlichen Ostküste fließt der <b>warme Golfstrom</b>: Er bringt warme, feuchte Luft → viel Regen und milde Winter.</li>
+        <li>Im Norden fließt der <b>kalte Labradorstrom</b> von Norden heran → kühleres Klima.</li>
+        <li>Im Südosten kommen tropische Luftmassen aus der Karibik.</li>
+        <li>Insgesamt fallen rund <b>1000 mm</b> Regen pro Jahr.</li>
+        <li><b>New York</b> liegt etwa so weit südlich wie Neapel, hat aber viel kältere Winter, weil kalte Luft ungehindert von Norden kommt und der Labradorstrom kühlt.</li>
       </ul>
     </div>
 
     <h2>Wirtschaft</h2>
     <div class="card">
-      <div class="row"><div class="k">BIP</div><div>Wert aller Waren und Dienstleistungen eines Landes in einem Jahr</div></div>
-      <div class="row"><div class="k">Sektor I</div><div>Landwirtschaft, Bergbau</div></div>
-      <div class="row"><div class="k">Sektor II</div><div>Industrie</div></div>
-      <div class="row"><div class="k">Sektor III</div><div>Dienstleistungen</div></div>
-      <div class="row"><div class="k">Deutschland</div><div>1 · 22,9 · 71,2 % → Industrieland, Dienstleistungen am größten</div></div>
-      <div class="row"><div class="k">Nigeria</div><div>20 · 29 · 47 %</div></div>
+      <div class="row"><div class="k">BIP</div><div><b>Bruttoinlandsprodukt</b>: der Wert aller Waren und Dienstleistungen, die in einem Land in einem Jahr hergestellt werden. Es zeigt, wie stark eine Wirtschaft ist.</div></div>
+      <div class="row"><div class="k">Primärer Sektor</div><div>Rohstoffe gewinnen: Landwirtschaft, Forstwirtschaft, Fischerei, Bergbau</div></div>
+      <div class="row"><div class="k">Sekundärer Sektor</div><div>Rohstoffe verarbeiten: Industrie, produzierendes Gewerbe</div></div>
+      <div class="row"><div class="k">Tertiärer Sektor</div><div>Dienstleistungen: Handel, Banken, Verkehr, Bildung, Gesundheit</div></div>
+      <div class="row"><div class="k">Deutschland</div><div>I 1 % · II 22,9 % · III 71,2 %<br>→ Industrieland, Dienstleistungen am größten</div></div>
+      <div class="row"><div class="k">Nigeria</div><div>I 20 % · II 29 % · III 47 %<br>→ Landwirtschaft noch viel wichtiger</div></div>
+      <p class="m">Je weiter entwickelt ein Land, desto kleiner der primäre und desto größer der tertiäre Sektor.</p>
     </div>
 
     <h2>Landwirtschaft</h2>
     <div class="card">
-      <div class="row"><div class="k">Braucht</div><div>Wärme, Regen, fruchtbaren Boden</div></div>
-      <div class="row"><div class="k">Intensiv</div><div>viel Ertrag pro Fläche: Massentierhaltung, Dünger, Pestizide, Maschinen</div></div>
-      <div class="row"><div class="k">Extensiv</div><div>große Flächen, wenig Ertrag pro Fläche (z. B. Weiden)</div></div>
-      <div class="row"><div class="k">Feedlots</div><div>Rindermast, Tausende Tiere auf engem Raum, Kraftfutter; Gülle belastet Grundwasser</div></div>
+      <div class="row"><div class="k">Voraus&shy;setzungen</div><div>genug Wärme, genug Niederschlag (oder Bewässerung), fruchtbarer Boden</div></div>
+      <div class="row"><div class="k">Intensiv</div><div>möglichst <b>hohe Erträge pro Fläche</b> durch viel Einsatz: Massentierhaltung, Dünger, Pestizide, Maschinen</div></div>
+      <div class="row"><div class="k">Extensiv</div><div>große Flächen mit <b>wenig Einsatz</b>, darum niedrige Erträge pro Fläche (z. B. Rinderweiden)</div></div>
+      <div class="row"><div class="k">Feedlots</div><div>riesige Mastanlagen für Rinder: Tausende Tiere auf engem Raum, Kraftfutter aus Mais und Soja, oft Antibiotika. Die Gülle belastet Boden und Grundwasser.</div></div>
     </div>
 
-    <h2>Kalifornisches Längstal</h2>
+    <h2>Intensive Agrarproduktion im Kalifornischen Längstal</h2>
     <div class="card">
-      <div class="row"><div class="k">Gunst</div><div>fruchtbarer Boden, warm ohne Frost, flach, viele Flüsse, mehrere Ernten pro Jahr</div></div>
-      <div class="row"><div class="k">Ungunst</div><div><b>Sommertrockenheit</b> (Lee)</div></div>
-      <div class="row"><div class="k">Lösung</div><div><b>künstliche Bewässerung</b> aus Flüssen, Grundwasser, Stauseen, Kanälen</div></div>
+      <p>Das <b>Längstal</b> (Central Valley) liegt zwischen den Küstengebirgen und der Sierra Nevada, ist etwa 700 km lang und eines der wichtigsten Anbaugebiete der USA (z. B. Mandeln, Obst, Gemüse, Wein).</p>
+      <h3>Gunstfaktoren</h3>
+      <ul>
+        <li><b>fruchtbarer Boden</b> aus Flussablagerungen</li>
+        <li><b>hohe Temperaturen</b>, kein Frost</li>
+        <li><b>flaches Relief</b>: gut für Maschinen und Bewässerung</li>
+        <li><b>zahlreiche Flüsse</b> aus der Sierra Nevada</li>
+        <li>dadurch <b>mehrere Ernten pro Jahr</b></li>
+      </ul>
+      <h3>Ungunstfaktor</h3>
+      <p><b>Sommertrockenheit</b>: Das Tal liegt im Lee der Küstengebirge, und im Sommer blockiert das Subtropenhoch den Regen. Gerade in der Wachstumszeit fehlt also Wasser.</p>
+      <h3>Lösung: künstliche Bewässerung</h3>
+      <p>Das Wasser kommt aus:</p>
+      <ul>
+        <li><b>Flüssen</b></li>
+        <li><b>Grundwasser</b> (Brunnen)</li>
+        <li><b>Niederschlagsspeicherung</b>: Stauseen fangen Regen und Schneeschmelze der Sierra Nevada auf</li>
+        <li><b>Kanalsystemen</b>, die Wasser vom feuchteren Norden in den trockenen Süden leiten</li>
+      </ul>
       <h3>Folgen</h3>
-      <div class="row"><div class="k">Salzwasser&shy;intrusion</div><div>zu viel Grundwasser abgepumpt → Meerwasser fließt nach → Grundwasser versalzt</div></div>
-      <div class="row"><div class="k">Land&shy;absenkung</div><div>Wasser aus Tonschichten abgepumpt → Ton fällt zusammen → Boden sinkt (teils bis 8 m); dauerhaft, Ton speichert danach kaum noch Wasser</div></div>
-      <div class="row"><div class="k">Boden&shy;versalzung</div><div>Wasser verdunstet, Salz bleibt</div></div>
+      <div class="step"><div class="t">Salzwasserintrusion</div><div class="c">Durch unsachgemäße Brunnen wird zu viel Grundwasser abgepumpt. Der Grundwasserspiegel sinkt, und <b>Meerwasser dringt</b> in den Untergrund des Tals nach. Das Grundwasser <b>versalzt</b> und ist für Trinkwasser und Felder kaum noch nutzbar.</div></div>
+      <div class="step"><div class="t">Landabsenkung</div><div class="c">Der Untergrund besteht abwechselnd aus <b>Sand- und Tonschichten</b>. Tiefbrunnen pumpen Wasser ab, der <b>Wasserdruck</b> sinkt, die Tonschichten <b>fallen zusammen</b> und der Boden sinkt ab (teils bis 8 m). Das ist <b>dauerhaft</b>: Der zusammengedrückte Ton kann kaum noch Wasser aufnehmen, das Grundwasser fließt woandershin (z. B. ins Meer).</div></div>
+      <div class="step"><div class="t">Bodenversalzung</div><div class="c">Bewässerungswasser verdunstet in der Hitze, die gelösten <b>Salze bleiben</b> im Boden zurück. Der Boden wird mit der Zeit unfruchtbar.</div></div>
     </div>
 
-    <h2>Bewässerung</h2>
+    <h2>Bewässerungsformen</h2>
     <div class="card">
-      <h3>Tröpfchen (Schlauch an jede Pflanze)</h3>
-      <div class="row"><div class="k">+</div><div>spart Wasser, gezielt an der Wurzel, Blätter trocken (weniger Pilze), gute Düngung</div></div>
-      <div class="row"><div class="k">−</div><div>teuer am Anfang, Wartung, Planung</div></div>
-      <h3>Furchen (Wasser in Gräben)</h3>
-      <div class="row"><div class="k">+</div><div>billig, einfach, Blätter trocken</div></div>
-      <div class="row"><div class="k">−</div><div>verschwendet Wasser, mind. 30 % Fläche weg, Bodenversalzung</div></div>
-      <h3>Sprinkler (wie Regen)</h3>
-      <div class="row"><div class="k">+</div><div>große Fläche, einfach aufzubauen</div></div>
-      <div class="row"><div class="k">−</div><div>viel Wasserverlust, windanfällig</div></div>
+      <h3>Tröpfchenbewässerung</h3>
+      <p>Schläuche mit kleinen Löchern bringen das Wasser Tropfen für Tropfen direkt an jede Pflanze, oft computergesteuert.</p>
+      <div class="row"><div class="k">Pro</div><div>spart Wasser, versorgt gezielt die Wurzel, weniger Pilzkrankheiten (Blätter bleiben trocken), Dünger lässt sich mitgeben</div></div>
+      <div class="row"><div class="k">Contra</div><div>hohe Anfangskosten, viel Wartung und Kontrolle, aufwendige Planung</div></div>
+      <h3>Furchenbewässerung</h3>
+      <p>Wasser fließt in Gräben (Furchen) zwischen den Pflanzenreihen.</p>
+      <div class="row"><div class="k">Pro</div><div>niedrige Kosten, einfache Handhabung, weniger Pilzbefall (Blätter bleiben trocken)</div></div>
+      <div class="row"><div class="k">Contra</div><div>viel Wasser versickert oder verdunstet, Furchen kosten mind. 30 % der Fläche, Bodenversalzung</div></div>
+      <h3>Sprinklerbewässerung</h3>
+      <p>Wasser wird wie Regen über das Feld gesprüht.</p>
+      <div class="row"><div class="k">Pro</div><div>deckt große Flächen ab, einfach aufzubauen</div></div>
+      <div class="row"><div class="k">Contra</div><div>hoher Wasserverlust durch Verdunstung, Wind verweht das Wasser</div></div>
     </div>
 
     <h2>Naturgefahren (verstehen)</h2>
