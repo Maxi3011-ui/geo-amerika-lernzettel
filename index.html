@@ -31,7 +31,7 @@
 
   nav.tabs {
     position: sticky; top: 0; z-index: 5;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px;
     padding: 10px 0; background: var(--bg);
   }
   nav.tabs button {
@@ -97,7 +97,8 @@
     body { font-size: 15px; }
     .shell { padding: 0 3px 24px; }
     nav.tabs { grid-template-columns: repeat(2, 1fr); gap: 3px; padding: 4px 0 6px; }
-    nav.tabs button { min-height: 30px; border-radius: 9px; font-size: 0.72rem; }
+    nav.tabs { gap: 2px; }
+    nav.tabs button { min-height: 30px; border-radius: 9px; font-size: 0.65rem; }
     h2 { margin: 14px 0 6px; font-size: 1.2rem; }
     h3 { font-size: 0.9rem; margin: 8px 0 3px; }
     .card { padding: 3px 7px; border-radius: 10px; margin-bottom: 7px; }
@@ -124,6 +125,7 @@
     <button role="tab" data-tab="diagramm" aria-selected="false">Diagramm</button>
     <button role="tab" data-tab="raeume" aria-selected="false">Räume</button>
     <button role="tab" data-tab="usa" aria-selected="false">USA</button>
+    <button role="tab" data-tab="loesungen" aria-selected="false">Lösungen</button>
   </nav>
 
   <!-- ================= LUV / LEE ================= -->
@@ -442,6 +444,10 @@
       <details><summary>Tsunami</summary><div class="a">Seebeben, Vulkan oder Rutschung verdrängt plötzlich viel Wasser → Riesenwelle.</div></details>
       <details><summary>Vulkane</summary><div class="a">Magma kommt an Plattengrenzen (Kaskaden, z. B. Mount St. Helens) oder Hotspots (Hawaii, Yellowstone) nach oben. Lava, Asche; Asche macht Boden fruchtbar.</div></details>
     </div>
+  </section>
+  <section id="loesungen" hidden>
+    <h2>Lösungen</h2>
+    <div id="loesungen-inhalt" class="card"><p>Lösung:</p></div>
   </section>
 </main>
 
