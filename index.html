@@ -112,69 +112,47 @@
   <section id="luv">
     <h2>So rechnest du</h2>
     <div class="card">
-      <div class="step"><div class="t">1 · Luv trocken</div><div class="c">Start bis Kondensationsniveau: <b>−1 °C pro 100 m</b></div></div>
-      <div class="step"><div class="t">2 · Luv feucht (Wolke, Regen)</div><div class="c">Kondensationsniveau bis Gipfel: <b>−0,5 °C pro 100 m</b></div></div>
-      <div class="step"><div class="t">3 · Lee trocken</div><div class="c">Gipfel bis Ziel: <b>+1 °C pro 100 m</b></div></div>
-      <div class="step"><div class="t">4 · Föhneffekt</div><div class="c">Temperatur Lee − Temperatur Luv (gleiche Höhe)</div></div>
-      <div class="step"><div class="t">Sonderfall</div><div class="c">Gipfel unter Kondensationsniveau → keine Wolke, alles mit 1 °C</div></div>
+      <div class="step"><div class="t">1 · Hoch bis zur Wolke</div><div class="c"><b>−1 °C</b> pro 100 m</div></div>
+      <div class="step"><div class="t">2 · In der Wolke bis zum Gipfel</div><div class="c"><b>−0,5 °C</b> pro 100 m</div></div>
+      <div class="step"><div class="t">3 · Im Lee runter</div><div class="c"><b>+1 °C</b> pro 100 m</div></div>
+      <div class="step"><div class="t">4 · Föhneffekt</div><div class="c">Lee − Luv (gleiche Höhe)</div></div>
+      <p class="m">Wolke beginnt am Kondensationsniveau. In der Wolke nur 0,5 °C, weil Kondensation Wärme freisetzt. Liegt der Gipfel tiefer: keine Wolke, überall 1 °C.</p>
     </div>
 
     <h2>Beispiel</h2>
     <div class="card">
-      <p class="m">0 m: 10 °C · Kondensationsniveau 1600 m · Gipfel 3000 m · Lee 0 m</p>
-      <div class="step"><div class="t">1 · 0 → 1600 m</div><div class="c">16 × 1 = 16 → 10 − 16 = <b>−6 °C</b></div></div>
-      <div class="step"><div class="t">2 · 1600 → 3000 m</div><div class="c">14 × 0,5 = 7 → −6 − 7 = <b>−13 °C</b></div></div>
-      <div class="step"><div class="t">3 · 3000 → 0 m</div><div class="c">30 × 1 = 30 → −13 + 30 = <span class="res">17 °C</span></div></div>
-      <div class="step"><div class="t">4 · Föhneffekt</div><div class="c">17 − 10 = <b>7 °C</b> wärmer im Lee</div></div>
-    </div>
-
-    <h2>Regeln</h2>
-    <div class="card">
-      <div class="row"><div class="k">Trocken<br><span class="m">ohne Wolke</span></div><div><b>1 °C pro 100 m</b><br>Aufstieg bis Kondensationsniveau und jeder Abstieg</div></div>
-      <div class="row"><div class="k">Feucht<br><span class="m">in der Wolke</span></div><div><b>0,5 °C pro 100 m</b><br>vom Kondensationsniveau bis zum Gipfel</div></div>
-      <div class="row"><div class="k">Warum nur 0,5?</div><div>Kondensation setzt Wärme frei → Abkühlung reduziert</div></div>
-      <div class="row"><div class="k">Lee</div><div>Abstieg immer trocken: <b>+1 °C pro 100 m</b> → Lee wärmer und trockener als Luv (Föhn)</div></div>
-    </div>
-    <div class="card">
-      <div class="formel">Δh in m ÷ 100 × Rate = ΔT</div>
-      <p class="m">Bsp.: 1400 m feucht → 14 × 0,5 = 7 °C kälter</p>
+      <p class="m">10 °C auf 0 m · Wolke ab 1600 m · Gipfel 3000 m</p>
+      <div class="step"><div class="c">0 → 1600 m: 10 − 16 = <b>−6 °C</b></div></div>
+      <div class="step"><div class="c">1600 → 3000 m: −6 − 7 = <b>−13 °C</b></div></div>
+      <div class="step"><div class="c">3000 → 0 m: −13 + 30 = <span class="res">17 °C</span></div></div>
+      <div class="step"><div class="c">Föhn: 17 − 10 = <b>7 °C</b> wärmer</div></div>
     </div>
 
     <h2>Steigungsregen</h2>
     <div class="card">
-      <ul>
-        <li>Luft nimmt über dem Ozean Feuchtigkeit auf</li>
-        <li>Wind treibt Luft ans Gebirge → <b>Aufstieg erzwungen</b></li>
-        <li>Luft kühlt ab; kalte Luft speichert weniger Wasserdampf als warme</li>
-        <li>Ab dem <b>Kondensationsniveau</b>: Wolken → Regen im <b>Luv</b></li>
-        <li>Im <b>Lee</b> sinkt die Luft, erwärmt sich, Wolken lösen sich auf → <b>Trockenheit</b> (Regenschatten)</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="row"><div class="k">Luv</div><div>dem Wind zugewandt: feucht, viel Regen</div></div>
-      <div class="row"><div class="k">Lee</div><div>dem Wind abgewandt: trocken, warm</div></div>
+      <div class="row"><div class="k">Luv</div><div>Seite zum Wind. Feuchte Meeresluft muss hoch, kühlt ab → Wolken → <b>Regen</b></div></div>
+      <div class="row"><div class="k">Lee</div><div>Seite weg vom Wind. Luft sinkt, wird warm → <b>trocken</b> (Regenschatten)</div></div>
+      <div class="row"><div class="k">Warum?</div><div>Kalte Luft speichert weniger Wasser als warme</div></div>
     </div>
 
-    <h2>Beispiele USA</h2>
+    <h2>In den USA</h2>
     <div class="card">
       <ul>
-        <li>Westwind vom Pazifik → Westküste im Luv: bis <b>3000 mm</b>/Jahr</li>
-        <li>Kalifornisches Längstal im Lee der Küstengebirge → Sommertrockenheit</li>
-        <li>Great Basin und Great Plains im Lee der Kordilleren: <b>250–500 mm</b>/Jahr</li>
+        <li>Westküste im Luv: bis <b>3000 mm</b>/Jahr</li>
+        <li>Längstal, Great Basin, Great Plains im Lee: <b>250–500 mm</b>/Jahr</li>
       </ul>
     </div>
   </section>
 
   <!-- ================= KLIMADIAGRAMM ================= -->
   <section id="diagramm" hidden>
-    <h2>Klimadiagramm lesen</h2>
+    <h2>Lesen</h2>
     <div class="card">
-      <div class="row"><div class="k"><span class="r">Temperatur</span></div><div>rote Linie, linke Achse (°C)</div></div>
-      <div class="row"><div class="k"><span class="bl">Niederschlag</span></div><div>blaue Linie/Balken, rechte Achse (mm)</div></div>
+      <div class="row"><div class="k"><span class="r">Rot</span></div><div>Temperatur (°C, links)</div></div>
+      <div class="row"><div class="k"><span class="bl">Blau</span></div><div>Niederschlag (mm, rechts)</div></div>
       <div class="row"><div class="k">Maßstab</div><div><b>10 °C = 20 mm</b></div></div>
-      <div class="row"><div class="k">Humid</div><div>N-Linie <b>über</b> T-Linie<br>Niederschlag &gt; Verdunstung</div></div>
-      <div class="row"><div class="k">Arid</div><div>N-Linie <b>unter</b> T-Linie<br>Niederschlag &lt; Verdunstung</div></div>
-      <div class="row"><div class="k">Schnelltest</div><div>arid, wenn N (mm) &lt; 2 × T (°C)</div></div>
+      <div class="row"><div class="k">Humid</div><div>Blau über Rot: Regen &gt; Verdunstung</div></div>
+      <div class="row"><div class="k">Arid</div><div>Blau unter Rot: Regen &lt; Verdunstung</div></div>
     </div>
 
     <h2>Beispiel: Sacramento</h2>
@@ -185,65 +163,61 @@
       <div id="kdwerte"></div>
     </div>
 
-    <h2>Auswertung in 5 Schritten</h2>
+    <h2>Auswerten</h2>
     <div class="card">
-      <div class="step"><div class="t">1 · Einordnen</div><div class="c">Station, Lage (Breite, Kontinent, Küste/Inland), Höhe ü. NN</div></div>
-      <div class="step"><div class="t">2 · Temperatur</div><div class="c">Jahresmittel, wärmster und kältester Monat, <b>Amplitude ΔT = Tmax − Tmin</b>, Verlauf</div></div>
-      <div class="step"><div class="t">3 · Niederschlag</div><div class="c">Jahressumme, Verteilung, Maximum/Minimum (Sommer- oder Winterregen)</div></div>
-      <div class="step"><div class="t">4 · Humid / arid</div><div class="c">welche Monate humid, welche arid</div></div>
-      <div class="step"><div class="t">5 · Erklären</div><div class="c">Ursachen nennen (unten), Klimatyp benennen</div></div>
+      <div class="step"><div class="t">1 · Wo?</div><div class="c">Ort, Breite, Höhe</div></div>
+      <div class="step"><div class="t">2 · Temperatur</div><div class="c">Mittel, wärmster, kältester Monat, <b>ΔT = Max − Min</b></div></div>
+      <div class="step"><div class="t">3 · Niederschlag</div><div class="c">Summe, wann am meisten</div></div>
+      <div class="step"><div class="t">4 · Humid / arid</div><div class="c">welche Monate</div></div>
+      <div class="step"><div class="t">5 · Erklären</div><div class="c">Ursachen + Klimatyp</div></div>
     </div>
 
-    <h2>Ursachen fürs Klima</h2>
+    <h2>Ursachen</h2>
     <div class="card">
-      <div class="row"><div class="k">Geogr. Breite</div><div>Nord/Süd: je näher am Äquator, desto wärmer</div></div>
-      <div class="row"><div class="k">Kontinentalität / Maritimität</div><div>Entfernung zum Meer → ΔT</div></div>
-      <div class="row"><div class="k">Meeres&shy;strömungen</div><div>warm: warme, feuchte Luft → viel Niederschlag, milde Winter<br>kalt: kühl, trocken</div></div>
-      <div class="row"><div class="k">Gebirge</div><div>Luv: feucht · Lee: trocken</div></div>
-      <div class="row"><div class="k">Tallage / Höhe</div><div>Tal im Lee trocken · Höhe kälter</div></div>
+      <div class="row"><div class="k">Breite</div><div>näher am Äquator = wärmer</div></div>
+      <div class="row"><div class="k">Meeresnähe</div><div>bestimmt ΔT (siehe unten)</div></div>
+      <div class="row"><div class="k">Meeres&shy;strömung</div><div>warm: feucht, milde Winter · kalt: kühl, trocken</div></div>
+      <div class="row"><div class="k">Gebirge</div><div>Luv feucht · Lee trocken</div></div>
+      <div class="row"><div class="k">Höhe / Tal</div><div>höher = kälter · Tal im Lee = trocken</div></div>
     </div>
 
     <h2>Ozeanisch vs. kontinental</h2>
     <div class="card">
-      <div class="row"><div class="k">Ozeanisch (maritim)</div><div><b>niedrige ΔT</b>, milde Winter, kühle Sommer, Niederschlag ganzjährig</div></div>
-      <div class="row"><div class="k">Kontinental</div><div><b>hohe ΔT</b>, kalte Winter, heiße Sommer, weniger Niederschlag</div></div>
-      <div class="row"><div class="k">Grund</div><div>Wasser erwärmt sich langsam und speichert Wärme lange; Land erwärmt und kühlt schnell</div></div>
-      <div class="row"><div class="k">Halbkugel</div><div>Nord: wärmster Monat Juli · Süd: Januar</div></div>
+      <div class="row"><div class="k">Ozeanisch</div><div><b>kleine ΔT</b>: milde Winter, kühle Sommer, Regen das ganze Jahr</div></div>
+      <div class="row"><div class="k">Kontinental</div><div><b>große ΔT</b>: kalte Winter, heiße Sommer, weniger Regen</div></div>
+      <div class="row"><div class="k">Warum?</div><div>Wasser speichert Wärme lange, Land nicht</div></div>
+      <div class="row"><div class="k">Wärmster Monat</div><div>Nordhalbkugel Juli, Südhalbkugel Januar</div></div>
     </div>
   </section>
 
   <!-- ================= NATURRÄUME ================= -->
   <section id="raeume" hidden>
-    <h2>Naturräume von West nach Ost</h2>
+    <h2>Westen: Kordilleren</h2>
     <div class="card">
-      <h3>Kordilleren (Westen, Nord-Süd)</h3>
-      <div class="row"><div class="k">Küstengebirge</div><div>Coast Ranges, direkt am Pazifik</div></div>
-      <div class="row"><div class="k">Kalifornisches Längstal</div><div>Central Valley, flaches Tal zwischen Küstengebirge und Sierra Nevada</div></div>
-      <div class="row"><div class="k">Sierra Nevada / Kaskaden&shy;gebirge</div><div>hohe Gebirgskette östlich des Längstals (Kaskaden im Norden, Vulkane)</div></div>
-      <div class="row"><div class="k">Intermontane Becken und Plateaus</div><div>Great Basin, Colorado-Plateau (Grand Canyon), Columbia-Plateau; trocken</div></div>
-      <div class="row"><div class="k">Rocky Mountains</div><div>Hauptkette der Kordilleren, Ostrand des Gebirges</div></div>
+      <div class="row"><div class="k">Küstengebirge</div><div>direkt am Pazifik</div></div>
+      <div class="row"><div class="k">Kalifornisches Längstal</div><div>flaches Tal dahinter</div></div>
+      <div class="row"><div class="k">Sierra Nevada</div><div>Gebirge östlich vom Tal (im Norden: Kaskaden&shy;gebirge)</div></div>
+      <div class="row"><div class="k">Becken und Plateaus</div><div>trockenes Hochland: Great Basin, Colorado-Plateau</div></div>
+      <div class="row"><div class="k">Rocky Mountains</div><div>Hauptgebirge, Ostrand</div></div>
     </div>
+    <h2>Mitte</h2>
     <div class="card">
-      <h3>Mitte</h3>
-      <div class="row"><div class="k">Great Plains</div><div>Große Ebenen östlich der Rockies, steigen nach Westen an, trocken (Lee)</div></div>
-      <div class="row"><div class="k">Zentrales Tiefland</div><div>Mississippi-Tiefland, Prärie, flach, offen nach Nord und Süd</div></div>
-      <div class="row"><div class="k">Kanadischer Schild</div><div>um die Hudson Bay, altes Gestein, viele Seen</div></div>
+      <div class="row"><div class="k">Great Plains</div><div>trockene Ebenen östlich der Rockies</div></div>
+      <div class="row"><div class="k">Zentrales Tiefland</div><div>flach, am Mississippi</div></div>
+      <div class="row"><div class="k">Kanadischer Schild</div><div>um die Hudson Bay, viele Seen</div></div>
     </div>
+    <h2>Osten</h2>
     <div class="card">
-      <h3>Osten</h3>
-      <div class="row"><div class="k">Appalachen</div><div>altes Mittelgebirge, Nord-Süd, parallel zur Ostküste</div></div>
-      <div class="row"><div class="k">Atlantische Küstenebene</div><div>schmale Ebene zwischen Appalachen und Atlantik</div></div>
-      <div class="row"><div class="k">Golfküstenebene</div><div>flach am Golf von Mexiko</div></div>
+      <div class="row"><div class="k">Appalachen</div><div>altes Mittelgebirge</div></div>
+      <div class="row"><div class="k">Küstenebenen</div><div>am Atlantik und am Golf von Mexiko</div></div>
     </div>
-
     <h2>Gewässer</h2>
     <div class="card">
-      <div class="row"><div class="k">Große Seen</div><div>Oberer See, Michigan-, Huron-, Erie-, Ontariosee</div></div>
-      <div class="row"><div class="k">Mississippi</div><div>Hauptstrom des Zentralen Tieflands → Golf von Mexiko; Nebenflüsse Missouri, Ohio</div></div>
+      <div class="row"><div class="k">Große Seen</div><div>Oberer, Michigan, Huron, Erie, Ontario</div></div>
+      <div class="row"><div class="k">Mississippi</div><div>mit Missouri und Ohio → Golf von Mexiko</div></div>
       <div class="row"><div class="k">St.-Lorenz-Strom</div><div>Große Seen → Atlantik</div></div>
-      <div class="row"><div class="k">Colorado</div><div>durch den Grand Canyon → Golf von Kalifornien</div></div>
-      <div class="row"><div class="k">Rio Grande</div><div>Grenze USA–Mexiko → Golf von Mexiko</div></div>
-      <div class="row"><div class="k">Meere</div><div>Pazifik, Atlantik, Golf von Mexiko, Hudson Bay</div></div>
+      <div class="row"><div class="k">Colorado</div><div>Grand Canyon</div></div>
+      <div class="row"><div class="k">Rio Grande</div><div>Grenze zu Mexiko</div></div>
     </div>
 
     <h2>Abfrage</h2>
@@ -252,104 +226,80 @@
 
   <!-- ================= USA ================= -->
   <section id="usa" hidden>
-    <h2>Klima Nordamerikas</h2>
+    <h2>Klima</h2>
     <div class="card">
-      <p>Großteil der USA in der <b>gemäßigten Zone</b>, trotzdem vielfältige Klimate durch unterschiedliche Einflüsse.</p>
+      <p>Meist <b>gemäßigte Zone</b>, aber sehr unterschiedlich.</p>
       <h3>Westen</h3>
       <ul>
-        <li>Westwindzone</li>
-        <li>Kordilleren halten Niederschlag ab → Westküste bis <b>3000 mm</b>, innere Ebenen nur <b>250–500 mm</b></li>
-        <li>Südwesten: <b>subtropisches Winterregenklima</b>; im Sommer nordpazifisches Subtropenhoch → trocken</li>
+        <li>Westwinde vom Pazifik</li>
+        <li>Gebirge fangen den Regen ab: Küste bis 3000 mm, dahinter 250–500 mm</li>
+        <li>Südwesten: <b>Winterregen</b>, Sommer trocken (Subtropenhoch)</li>
       </ul>
-      <h3>Zentrale Tiefländer</h3>
+      <h3>Mitte</h3>
       <ul>
-        <li>Norden: kühlgemäßigtes kontinentales Klima, hohe ΔT</li>
-        <li>Süden: feucht-tropische Luftmassen vom Golf</li>
-        <li><b>Kein Ost-West-Gebirge</b> → Luftmassen strömen ungehindert von Nord nach Süd und umgekehrt</li>
-        <li>Folge: Kaltlufteinbrüche (Northers, Cold Waves), Tornados, Blizzards, Hurrikans</li>
+        <li>Norden kontinental (große ΔT), Süden feucht-warm vom Golf</li>
+        <li><b>Kein Ost-West-Gebirge</b> → kalte und warme Luft kommen ungehindert durch</li>
+        <li>Folge: Kälteeinbrüche (Northers), Tornados, Blizzards</li>
       </ul>
       <h3>Osten</h3>
       <ul>
-        <li>Südliche Ostküste: <b>warmer Golfstrom</b> → feucht, viel Niederschlag, milde Winter</li>
+        <li>Süden: <b>warmer Golfstrom</b> → feucht, mild</li>
         <li>Norden: <b>kalter Labradorstrom</b> → kühl</li>
-        <li>Südosten: tropische Luftmassen aus der Karibik</li>
-        <li>Jahresniederschlag ca. <b>1000 mm</b></li>
-        <li>New York: kalte Winter, weil kalte Luft ungehindert von Norden kommt</li>
+        <li>ca. <b>1000 mm</b> Regen pro Jahr</li>
+        <li>New York: kalte Winter, Kaltluft kommt ungehindert von Norden</li>
       </ul>
-    </div>
-    <div class="card">
-      <div class="row"><div class="k">Humid</div><div>Niederschlag &gt; Verdunstung</div></div>
-      <div class="row"><div class="k">Arid</div><div>Niederschlag &lt; Verdunstung</div></div>
-      <div class="row"><div class="k">Kalte Luft</div><div>trocken: kann weniger Wasserdampf speichern</div></div>
     </div>
 
     <h2>Wirtschaft</h2>
     <div class="card">
-      <div class="row"><div class="k">BIP</div><div>Bruttoinlandsprodukt: Wert aller Waren und Dienstleistungen, die ein Land in einem Jahr produziert</div></div>
-      <div class="row"><div class="k">Primärer Sektor</div><div>Landwirtschaft, Bergbau</div></div>
-      <div class="row"><div class="k">Sekundärer Sektor</div><div>Industrie, produzierendes Gewerbe</div></div>
-      <div class="row"><div class="k">Tertiärer Sektor</div><div>Dienstleistungen</div></div>
-      <div class="row"><div class="k">Deutschland</div><div>I 1 % · II 22,9 % · III 71,2 % → Industrieland</div></div>
-      <div class="row"><div class="k">Nigeria</div><div>I 20 % · II 29 % · III 47 %</div></div>
+      <div class="row"><div class="k">BIP</div><div>Wert aller Waren und Dienstleistungen eines Landes in einem Jahr</div></div>
+      <div class="row"><div class="k">Sektor I</div><div>Landwirtschaft, Bergbau</div></div>
+      <div class="row"><div class="k">Sektor II</div><div>Industrie</div></div>
+      <div class="row"><div class="k">Sektor III</div><div>Dienstleistungen</div></div>
+      <div class="row"><div class="k">Deutschland</div><div>1 · 22,9 · 71,2 % → Industrieland</div></div>
+      <div class="row"><div class="k">Nigeria</div><div>20 · 29 · 47 %</div></div>
     </div>
 
     <h2>Landwirtschaft</h2>
     <div class="card">
-      <div class="row"><div class="k">Voraus&shy;setzungen</div><div>Temperatur, Niederschlag, fruchtbarer Boden</div></div>
-      <div class="row"><div class="k">Intensiv</div><div>hohe Erträge pro Fläche: Massentierhaltung, Dünger, Pestizide, viel Maschineneinsatz</div></div>
-      <div class="row"><div class="k">Extensiv</div><div>große Flächen, wenig Einsatz pro Fläche, niedrige Erträge pro Fläche (z. B. Weidewirtschaft)</div></div>
-      <div class="row"><div class="k">Feedlots</div><div>Rindermast auf engem Raum, Tausende Tiere, Kraftfutter (Mais, Soja), Antibiotika; Gülle belastet Boden und Grundwasser</div></div>
+      <div class="row"><div class="k">Braucht</div><div>Wärme, Regen, fruchtbaren Boden</div></div>
+      <div class="row"><div class="k">Intensiv</div><div>viel Ertrag pro Fläche: Massentierhaltung, Dünger, Pestizide, Maschinen</div></div>
+      <div class="row"><div class="k">Extensiv</div><div>große Flächen, wenig Ertrag pro Fläche (z. B. Weiden)</div></div>
+      <div class="row"><div class="k">Feedlots</div><div>Rindermast, Tausende Tiere auf engem Raum, Kraftfutter; Gülle belastet Grundwasser</div></div>
     </div>
 
     <h2>Kalifornisches Längstal</h2>
     <div class="card">
-      <h3>Gunstfaktoren</h3>
-      <ul>
-        <li>fruchtbarer Boden</li>
-        <li>hohe Temperaturen, kein Frost</li>
-        <li>flaches Relief</li>
-        <li>zahlreiche Flüsse</li>
-        <li>mehrere Ernten pro Jahr</li>
-      </ul>
-      <h3>Ungunstfaktor</h3>
-      <ul><li><b>Sommertrockenheit</b> (Lee, Subtropenhoch)</li></ul>
-      <h3>→ Künstliche Bewässerung aus</h3>
-      <ul>
-        <li>Flüssen</li>
-        <li>Grundwasser</li>
-        <li>Niederschlagsspeicherung (Stauseen, Schneeschmelze Sierra Nevada)</li>
-        <li>Kanalsystemen</li>
-      </ul>
+      <div class="row"><div class="k">Gunst</div><div>fruchtbarer Boden, warm ohne Frost, flach, viele Flüsse, mehrere Ernten pro Jahr</div></div>
+      <div class="row"><div class="k">Ungunst</div><div><b>Sommertrockenheit</b> (Lee)</div></div>
+      <div class="row"><div class="k">Lösung</div><div><b>künstliche Bewässerung</b> aus Flüssen, Grundwasser, Stauseen, Kanälen</div></div>
       <h3>Folgen</h3>
-      <div class="row"><div class="k">Salzwasser&shy;intrusion</div><div>zu viel Grundwasser aus unsachgemäßen Brunnen → Meerwasser dringt in den Untergrund → Grundwasser versalzt</div></div>
-      <div class="row"><div class="k">Land&shy;absenkung</div><div>Untergrund aus Sand- und Tonschichten; Tiefbrunnen senken den Wasserdruck → Tonschichten fallen zusammen → Boden sinkt ab; Ton nimmt danach kaum Wasser auf → Speicher dauerhaft verloren</div></div>
-      <div class="row"><div class="k">Boden&shy;versalzung</div><div>Bewässerungswasser verdunstet, Salze bleiben im Boden</div></div>
+      <div class="row"><div class="k">Salzwasser&shy;intrusion</div><div>zu viel Grundwasser abgepumpt → Meerwasser fließt nach → Grundwasser versalzt</div></div>
+      <div class="row"><div class="k">Land&shy;absenkung</div><div>Wasser aus Tonschichten abgepumpt → Ton fällt zusammen → Boden sinkt; speichert danach kaum noch Wasser</div></div>
+      <div class="row"><div class="k">Boden&shy;versalzung</div><div>Wasser verdunstet, Salz bleibt</div></div>
     </div>
 
-    <h2>Bewässerungsformen</h2>
+    <h2>Bewässerung</h2>
     <div class="card">
-      <h3>Tröpfchen</h3>
-      <div class="row"><div class="k">Pro</div><div>Wasser sparen, gezielt an die Wurzel, weniger Pilzkrankheiten (Blätter trocken), effiziente Düngung</div></div>
-      <div class="row"><div class="k">Contra</div><div>hohe Anfangsinvestition, Wartung und Kontrolle, Planungsaufwand</div></div>
-      <div class="row"><div class="k">Funktion</div><div>Schläuche mit Löchern an jeder Pflanze, oft computergesteuert</div></div>
-      <h3>Furchen</h3>
-      <div class="row"><div class="k">Pro</div><div>niedrige Kosten, einfache Handhabung, weniger Pilzbefall (Blätter trocken)</div></div>
-      <div class="row"><div class="k">Contra</div><div>geringe Wassereffizienz, Flächenverlust (mind. 30 %), Bodenversalzung</div></div>
-      <div class="row"><div class="k">Funktion</div><div>Wasser fließt in Gräben zwischen den Reihen</div></div>
-      <h3>Sprinkler</h3>
-      <div class="row"><div class="k">Pro</div><div>große Fläche abgedeckt, einfache Installation</div></div>
-      <div class="row"><div class="k">Contra</div><div>hoher Wasserverlust (Verdunstung), windanfällig</div></div>
-      <div class="row"><div class="k">Funktion</div><div>Wasser wird wie Regen versprüht</div></div>
+      <h3>Tröpfchen (Schlauch an jede Pflanze)</h3>
+      <div class="row"><div class="k">+</div><div>spart Wasser, gezielt an der Wurzel, Blätter trocken (weniger Pilze), gute Düngung</div></div>
+      <div class="row"><div class="k">−</div><div>teuer am Anfang, Wartung, Planung</div></div>
+      <h3>Furchen (Wasser in Gräben)</h3>
+      <div class="row"><div class="k">+</div><div>billig, einfach, Blätter trocken</div></div>
+      <div class="row"><div class="k">−</div><div>verschwendet Wasser, mind. 30 % Fläche weg, Bodenversalzung</div></div>
+      <h3>Sprinkler (wie Regen)</h3>
+      <div class="row"><div class="k">+</div><div>große Fläche, einfach aufzubauen</div></div>
+      <div class="row"><div class="k">−</div><div>viel Wasserverlust, windanfällig</div></div>
     </div>
 
     <h2>Naturgefahren (verstehen)</h2>
     <div class="card">
-      <details><summary>Tornado</summary><div class="a">Entsteht über Land: warme, feuchte Golfluft trifft auf kalte, trockene Luft → Verwirbelung, Auf- und Abwinde. „Tornado Alley“ in den Great Plains (kein Ost-West-Gebirge, starke ΔT). Kleiner, lokaler, aber stärker als Hurrikan. Stärke: Fujita-Skala F0–F5.</div></details>
-      <details><summary>Hurrikan</summary><div class="a">Entsteht über dem Meer: Wasser mind. 26 °C, warme Luft steigt auf → Tiefdruck, nachströmende Winde, Erdrotation → Drehbewegung. Ab 118 km/h. Saison Juni–November. Folgen: Sturm, Überschwemmung. Schutz: Evakuierung, Häuser verbarrikadieren, Überwachung.</div></details>
-      <details><summary>Blizzard</summary><div class="a">Arktische Luft trifft auf feuchte, warme Luft → heftiger Schneesturm. Möglich, weil kein Ost-West-Gebirge die Kaltluft stoppt. Folgen: Frostschäden, kein Verkehr, Stromausfall.</div></details>
-      <details><summary>Erdbeben</summary><div class="a">Platten reiben aneinander, Spannungen entladen sich ruckartig. Kalifornien: San-Andreas-Verwerfung (Transformstörung zwischen Pazifischer und Nordamerikanischer Platte). Schutz: erdbebensicher bauen, unter Tisch/Türrahmen.</div></details>
-      <details><summary>Tsunami</summary><div class="a">Große Wassermassen werden plötzlich verdrängt: Seebeben, Vulkanausbruch, Hangrutsch. Schutz: Deiche, Sensoren am Meeresboden, Evakuierung.</div></details>
-      <details><summary>Vulkane</summary><div class="a">Heißes Gestein (Magma) dringt an die Oberfläche: an divergierenden/konvergierenden Plattengrenzen oder über Mantelplumes (Hotspot, z. B. Hawaii, Yellowstone). Folgen: Lavaströme, Ascheregen, pyroklastische Ströme; Asche macht Boden fruchtbar.</div></details>
+      <details><summary>Tornado</summary><div class="a">Über Land: warme, feuchte Luft trifft kalte, trockene → Wirbel. Häufig in der „Tornado Alley“ (Great Plains). Klein, aber sehr stark. Skala F0–F5.</div></details>
+      <details><summary>Hurrikan</summary><div class="a">Über dem Meer ab 26 °C: warme Luft steigt, Erdrotation dreht sie. Ab 118 km/h. Juni–November. Sturm, Überschwemmung → evakuieren.</div></details>
+      <details><summary>Blizzard</summary><div class="a">Arktische Luft trifft feuchte Luft → Schneesturm. Kein Ost-West-Gebirge hält die Kälte auf.</div></details>
+      <details><summary>Erdbeben</summary><div class="a">Platten reiben aneinander, Spannung entlädt sich. Kalifornien: San-Andreas-Verwerfung.</div></details>
+      <details><summary>Tsunami</summary><div class="a">Seebeben, Vulkan oder Rutschung verdrängt plötzlich viel Wasser → Riesenwelle.</div></details>
+      <details><summary>Vulkane</summary><div class="a">Magma kommt an Plattengrenzen oder Hotspots (Hawaii, Yellowstone) nach oben. Lava, Asche; Asche macht Boden fruchtbar.</div></details>
     </div>
   </section>
 </main>
@@ -396,9 +346,9 @@ const N = [92, 89, 70, 30, 16, 5, 0, 1, 6, 27, 55, 81];
   document.getElementById('kdwerte').innerHTML = `
     <div class="row"><div class="k">Jahresmittel</div><div>${fmt(mittel)} °C</div></div>
     <div class="row"><div class="k">Amplitude</div><div>${fmt(tmax)} − ${fmt(tmin)} = <b>${fmt(tmax - tmin)} K</b></div></div>
-    <div class="row"><div class="k">Niederschlag</div><div>${summe} mm/Jahr, Maximum im Winter → Winterregen</div></div>
+    <div class="row"><div class="k">Niederschlag</div><div>${summe} mm/Jahr, meist im Winter</div></div>
     <div class="row"><div class="k">Arid</div><div>${namen[arid[0]]}–${namen[arid[arid.length - 1]]} (${arid.length} Monate)</div></div>
-    <div class="row"><div class="k">Erklärung</div><div>Lee der Küstengebirge + Subtropenhoch im Sommer → subtropisches Winterregenklima</div></div>`;
+    <div class="row"><div class="k">Warum?</div><div>Lee + Subtropenhoch → Winterregenklima</div></div>`;
 })();
 
 /* ===== Naturräume-Abfrage ===== */
@@ -406,13 +356,13 @@ const QUIZ = [
   ['Gebirge direkt am Pazifik', 'Küstengebirge (Coast Ranges)'],
   ['Flaches, fruchtbares Tal in Kalifornien, sommertrocken', 'Kalifornisches Längstal (Central Valley)'],
   ['Hohe Kette östlich des Längstals', 'Sierra Nevada'],
-  ['Trockenes Hochland zwischen den Gebirgsketten', 'Intermontane Becken und Plateaus (Great Basin, Colorado-Plateau)'],
+  ['Trockenes Hochland zwischen den Gebirgsketten', 'Becken und Plateaus (Great Basin, Colorado-Plateau)'],
   ['Hauptkette der Kordilleren, Ostrand', 'Rocky Mountains'],
   ['Trockene Ebenen direkt östlich der Rockies', 'Great Plains'],
   ['Flaches Land am Mississippi, offen nach Nord und Süd', 'Zentrales Tiefland'],
   ['Altes Gestein um die Hudson Bay', 'Kanadischer Schild'],
   ['Altes Mittelgebirge im Osten', 'Appalachen'],
-  ['Flaches Land am Golf von Mexiko', 'Golfküstenebene'],
+  ['Flaches Land am Golf von Mexiko', 'Küstenebene am Golf'],
   ['Fünf Seen an der Grenze USA–Kanada', 'Große Seen'],
   ['Hauptstrom der Mitte, mündet in den Golf', 'Mississippi']
 ];
