@@ -68,7 +68,6 @@
     width: 100%; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--line);
     background: var(--bg); color: var(--ink); font: inherit; font-weight: 700;
   }
-  .inputs input:focus { outline: 2px solid var(--acc); border-color: transparent; }
   .step { padding: 7px 0; border-bottom: 1px solid var(--line); }
   .step:last-child { border-bottom: 0; }
   .step .t { color: var(--muted); font-size: 0.8rem; font-weight: 700; }
@@ -99,9 +98,6 @@
     .row { grid-template-columns: 1fr; gap: 0; padding: 5px 0; }
     .m { font-size: 0.72rem; }
     .formel { font-size: 0.95rem; padding: 5px 0; }
-    .inputs { grid-template-columns: 1fr; gap: 4px; }
-    .inputs label { font-size: 0.68rem; }
-    .inputs input { padding: 4px 6px; font-size: 0.9rem; border-radius: 7px; }
     .step .t { font-size: 0.68rem; }
     .res { font-size: 1rem; }
     summary { padding: 6px 0; }
@@ -120,17 +116,23 @@
 
   <!-- ================= LUV / LEE ================= -->
   <section id="luv">
-    <h2>Rechner Luv → Lee</h2>
+    <h2>So rechnest du</h2>
     <div class="card">
-      <div class="inputs" id="calc">
-        <label>Start-Temp. [°C]<input inputmode="decimal" autocomplete="off" data-k="t0" value="10"></label>
-        <label>Start-Höhe [m]<input inputmode="decimal" autocomplete="off" data-k="h0" value="0"></label>
-        <label>Kondensationsniveau [m]<input inputmode="decimal" autocomplete="off" data-k="kn" value="1600"></label>
-        <label>Gipfel [m]<input inputmode="decimal" autocomplete="off" data-k="g" value="3000"></label>
-        <label>Ziel im Lee [m]<input inputmode="decimal" autocomplete="off" data-k="he" value="0"></label>
-      </div>
+      <div class="step"><div class="t">1 · Luv trocken</div><div class="c">Start bis Kondensationsniveau: <b>−1 °C pro 100 m</b></div></div>
+      <div class="step"><div class="t">2 · Luv feucht (Wolke, Regen)</div><div class="c">Kondensationsniveau bis Gipfel: <b>−0,5 °C pro 100 m</b></div></div>
+      <div class="step"><div class="t">3 · Lee trocken</div><div class="c">Gipfel bis Ziel: <b>+1 °C pro 100 m</b></div></div>
+      <div class="step"><div class="t">4 · Föhneffekt</div><div class="c">Temperatur Lee − Temperatur Luv (gleiche Höhe)</div></div>
+      <div class="step"><div class="t">Sonderfall</div><div class="c">Gipfel unter Kondensationsniveau → keine Wolke, alles mit 1 °C</div></div>
     </div>
-    <div class="card" id="out"></div>
+
+    <h2>Beispiel</h2>
+    <div class="card">
+      <p class="m">0 m: 10 °C · Kondensationsniveau 1600 m · Gipfel 3000 m · Lee 0 m</p>
+      <div class="step"><div class="t">1 · 0 → 1600 m</div><div class="c">16 × 1 = 16 → 10 − 16 = <b>−6 °C</b></div></div>
+      <div class="step"><div class="t">2 · 1600 → 3000 m</div><div class="c">14 × 0,5 = 7 → −6 − 7 = <b>−13 °C</b></div></div>
+      <div class="step"><div class="t">3 · 3000 → 0 m</div><div class="c">30 × 1 = 30 → −13 + 30 = <span class="res">17 °C</span></div></div>
+      <div class="step"><div class="t">4 · Föhneffekt</div><div class="c">17 − 10 = <b>7 °C</b> wärmer im Lee</div></div>
+    </div>
 
     <h2>Regeln</h2>
     <div class="card">
@@ -367,35 +369,7 @@ tabs.forEach(b => b.addEventListener('click', () => {
   window.scrollTo(0, 0);
 }));
 
-/* ===== Luv/Lee-Rechner ===== */
-const fmt = n => (Math.round(n * 10) / 10).toString().replace('.', ',').replace('-', '−');
-const parse = s => parseFloat(String(s).replace(',', '.').replace('−', '-'));
-function rechne() {
-  const v = {};
-  let ok = true;
-  document.querySelectorAll('#calc input').forEach(i => { v[i.dataset.k] = parse(i.value); if (isNaN(v[i.dataset.k])) ok = false; });
-  const out = document.getElementById('out');
-  if (!ok) { out.innerHTML = '<div class="step m">Bitte alle Werte eintragen.</div>'; return; }
-  const { t0, h0, kn, g, he } = v;
-  let html = '';
-  if (kn >= g) {
-    const tg = t0 - (g - h0) / 100;
-    const te = tg + (g - he) / 100;
-    html += `<div class="step"><div class="t">Aufstieg trocken (keine Wolke, Gipfel unter Kondensationsniveau)</div><div class="c">${fmt((g - h0) / 100)} × 1 °C → Gipfel <b>${fmt(tg)} °C</b></div></div>`;
-    html += `<div class="step"><div class="t">Abstieg Lee trocken</div><div class="c">${fmt((g - he) / 100)} × 1 °C → <span class="res">${fmt(te)} °C</span> auf ${fmt(he)} m</div></div>`;
-  } else {
-    const tk = t0 - (kn - h0) / 100;
-    const tg = tk - (g - kn) / 100 * 0.5;
-    const te = tg + (g - he) / 100;
-    html += `<div class="step"><div class="t">1 · Luv trocken: ${fmt(h0)} → ${fmt(kn)} m</div><div class="c">${fmt((kn - h0) / 100)} × 1 °C = −${fmt((kn - h0) / 100)} °C → <b>${fmt(tk)} °C</b></div></div>`;
-    html += `<div class="step"><div class="t">2 · Luv feucht (Wolke, Regen): ${fmt(kn)} → ${fmt(g)} m</div><div class="c">${fmt((g - kn) / 100)} × 0,5 °C = −${fmt((g - kn) / 200)} °C → <b>${fmt(tg)} °C</b></div></div>`;
-    html += `<div class="step"><div class="t">3 · Lee trocken: ${fmt(g)} → ${fmt(he)} m</div><div class="c">${fmt((g - he) / 100)} × 1 °C = +${fmt((g - he) / 100)} °C → <span class="res">${fmt(te)} °C</span></div></div>`;
-    if (he === h0) html += `<div class="step"><div class="t">Föhneffekt</div><div class="c">Lee ist <b>${fmt(te - t0)} °C</b> wärmer als Luv</div></div>`;
-  }
-  out.innerHTML = html;
-}
-document.getElementById('calc').addEventListener('input', rechne);
-rechne();
+const fmt = n => (Math.round(n * 10) / 10).toString().replace('.', ',');
 
 /* ===== Klimadiagramm Sacramento ===== */
 const MON = ['J','F','M','A','M','J','J','A','S','O','N','D'];
